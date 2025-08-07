@@ -19,7 +19,7 @@ set(CMAKE_IMPORT_FILE_VERSION 1)
 set(_cmake_targets_defined "")
 set(_cmake_targets_not_defined "")
 set(_cmake_expected_targets "")
-foreach(_cmake_expected_target IN ITEMS MaaFramework::MaaUtils MaaFramework::MaaFramework MaaFramework::MaaInterface MaaFramework::MaaToolkit MaaFramework::MaaAgentClient MaaFramework::MaaFrameworkModule)
+foreach(_cmake_expected_target IN ITEMS MaaFramework::MaaUtils MaaFramework::MaaFramework MaaFramework::MaaInterface MaaFramework::MaaToolkit MaaFramework::MaaAgentClient)
   list(APPEND _cmake_expected_targets "${_cmake_expected_target}")
   if(TARGET "${_cmake_expected_target}")
     list(APPEND _cmake_targets_defined "${_cmake_expected_target}")
@@ -85,32 +85,6 @@ add_library(MaaFramework::MaaAgentClient SHARED IMPORTED)
 set_target_properties(MaaFramework::MaaAgentClient PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include"
 )
-
-# Create imported target MaaFramework::MaaFrameworkModule
-add_library(MaaFramework::MaaFrameworkModule STATIC IMPORTED)
-
-set_target_properties(MaaFramework::MaaFrameworkModule PROPERTIES
-  CXX_MODULE_STD ""
-  IMPORTED_CXX_MODULES_COMPILE_DEFINITIONS "\$<\$<CONFIG:Debug>:_DEBUG;MAA_DEBUG>;_DISABLE_CONSTEXPR_MUTEX_CONSTRUCTOR;MAA_VERSION=\"v4.1.0\""
-  IMPORTED_CXX_MODULES_COMPILE_OPTIONS "/utf-8;/MP;/W4;/WX;/Gy;/permissive-;/sdl;/wd4127;/wd4251;/DWINVER=0x0A00;/D_WIN32_WINNT=0x0A00"
-  IMPORTED_CXX_MODULES_LINK_LIBRARIES "MaaFramework::MaaInterface"
-  INTERFACE_COMPILE_FEATURES "cxx_std_20"
-  INTERFACE_LINK_LIBRARIES "\$<LINK_ONLY:MaaFramework::MaaInterface>"
-)
-
-if(NOT CMAKE_VERSION VERSION_LESS "3.23.0")
-  target_sources(MaaFramework::MaaFrameworkModule
-    INTERFACE
-      FILE_SET "cppms"
-      TYPE "CXX_MODULES"
-      BASE_DIRS "${_IMPORT_PREFIX}/share/MaaFramework/modules"
-      FILES "${_IMPORT_PREFIX}/share/MaaFramework/modules/MaaFramework.cppm" "${_IMPORT_PREFIX}/share/MaaFramework/modules/MaaToolkit.cppm" "${_IMPORT_PREFIX}/share/MaaFramework/modules/MaaAgentClient.cppm" "${_IMPORT_PREFIX}/share/MaaFramework/modules/MaaAgentServer.cppm"
-  )
-else()
-  set_property(TARGET MaaFramework::MaaFrameworkModule
-    APPEND PROPERTY INTERFACE_INCLUDE_DIRECTORIES
-  )
-endif()
 
 # Load information for each installed configuration.
 file(GLOB _cmake_config_files "${CMAKE_CURRENT_LIST_DIR}/MaaFramework-*.cmake")

@@ -1,5 +1,5 @@
 d:
-cd D:\file\project\NM\narutomobile
+cd E:\Apply\Maa1\narutomobile
 python ./install.py
 install/MaaPiCli.exe
 

@@ -48,15 +48,5 @@ set_target_properties(MaaFramework::MaaAgentClient PROPERTIES
 list(APPEND _cmake_import_check_targets MaaFramework::MaaAgentClient )
 list(APPEND _cmake_import_check_files_for_MaaFramework::MaaAgentClient "${_IMPORT_PREFIX}/lib/MaaAgentClient.lib" "${_IMPORT_PREFIX}/bin/MaaAgentClient.dll" )
 
-# Import target "MaaFramework::MaaFrameworkModule" for configuration "Release"
-set_property(TARGET MaaFramework::MaaFrameworkModule APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
-set_target_properties(MaaFramework::MaaFrameworkModule PROPERTIES
-  IMPORTED_LINK_INTERFACE_LANGUAGES_RELEASE "CXX"
-  IMPORTED_LOCATION_RELEASE "${_IMPORT_PREFIX}/lib/MaaFrameworkModule.lib"
-  )
-
-list(APPEND _cmake_import_check_targets MaaFramework::MaaFrameworkModule )
-list(APPEND _cmake_import_check_files_for_MaaFramework::MaaFrameworkModule "${_IMPORT_PREFIX}/lib/MaaFrameworkModule.lib" )
-
 # Commands beyond this point should not need to know the version.
 set(CMAKE_IMPORT_FILE_VERSION)

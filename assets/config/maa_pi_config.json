@@ -1,1 +1,6 @@
-{}
+{
+    "resource": "官服",
+    "controller": {
+        "name": "安卓端"
+    }
+}

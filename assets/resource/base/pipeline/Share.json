@@ -153,7 +153,7 @@
             39
         ],
         "next": [
-            "close_qq_friend_share"
+            "StopApp_qq"
         ],
         "interrupt": [
             "close_weekly_ninjia_title"
@@ -161,6 +161,13 @@
         "action": "Click",
         "pre_wait_freezes": 200,
         "post_wait_freezes": 400
+    },
+    "StopApp_qq": {
+        "action": "StopApp",
+        "package": "com.tencent.mobileqq",
+        "next": [
+            "check_main_screen_and_stop"
+        ]
     },
     "close_qq_friend_share": {
         "recognition": "OCR",
