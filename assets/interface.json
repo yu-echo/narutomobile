@@ -92,7 +92,8 @@
             "name": "修行之路",
             "entry": "shugyou_no_michi",
             "option": [
-                "修行之路从奖励中心进入"
+                "修行之路从奖励中心进入",
+                "打新关卡"
             ],
             "default_check": true,
             "description": "该功能需要使用已适配主题,如果不清楚已适配主题,请使用木叶季节系列主题或开启从奖励中心进入"
@@ -1486,6 +1487,22 @@
                                 "give_energy_account_friend",
                                 "energy_entry"
                             ]
+                        }
+                    }
+                }
+            ]
+        },
+        "打新关卡": {
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "No"
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "train_road_entry": {
+                            "next": "shugyou_no_michi_auto_push"
                         }
                     }
                 }
