@@ -1420,10 +1420,7 @@
         },
         "打新关卡": {
             "type": "switch",
-<<<<<<< HEAD
-=======
             "default_case": "No",
->>>>>>> upstream/main
             "cases": [
                 {
                     "name": "No"
@@ -1437,8 +1434,6 @@
                     }
                 }
             ]
-<<<<<<< HEAD
-=======
         },
         "display pointer location": {
             "type": "switch",
@@ -1461,7 +1456,6 @@
                     }
                 }
             ]
->>>>>>> upstream/main
         }
     }
 }
