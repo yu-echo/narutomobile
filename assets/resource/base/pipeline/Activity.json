@@ -35,6 +35,24 @@
             "activity_entry"
         ]
     },
+    "has_ramen": {
+        "recognition": "TemplateMatch",
+        "template": "Activity/ramen.png",
+        "roi": [
+            190,
+            108,
+            1077,
+            395
+        ],
+        "action": "Click",
+        "next": [
+            "check_no_energy",
+            "[JumpBack]get_ramen"
+        ],
+        "pre_delay": 0,
+        "post_delay": 0,
+        "post_wait_freezes": 200
+    },
     "check_no_energy": {
         "recognition": "TemplateMatch",
         "template": "Activity/ramen.png",
@@ -81,6 +99,7 @@
         "end_hold": 100,
         "max_hit": 10,
         "next": [
+            "has_ramen",
             "mouthly_sign_tab",
             "swipes_for_monthly_sign",
             "retry_failed"
@@ -185,7 +204,7 @@
         "action": "Click",
         "pre_delay": 0,
         "post_delay": 0,
-        "post_wait_freezes": 200,
+        "post_wait_freezes": 200
     },
     "click_privilege_store": {
         "recognition": "OCR",
@@ -258,6 +277,6 @@
             109,
             48
         ],
-        "action": "Click",
+        "action": "Click"
     }
 }

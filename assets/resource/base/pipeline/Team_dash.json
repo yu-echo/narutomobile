@@ -357,7 +357,7 @@
         ],
         "pre_delay": 0,
         "post_delay": 0,
-        "focus": "[color:DarkGoldenRod]加载战斗[/color]"
+        "focus": "[color:darkgray]加载战斗[/color]"
     },
     "team_dash_do_not_remind_gold": {
         "recognition": "TemplateMatch",
