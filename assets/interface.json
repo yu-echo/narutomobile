@@ -197,8 +197,7 @@
         },
         {
             "name": "关闭火影手游APP",
-            "entry": "exit_naruto",
-            "default_check": true
+            "entry": "exit_naruto"
         },
         {
             "name": "要塞(beta)",
@@ -1218,10 +1217,6 @@
             "type": "switch",
             "cases": [
                 {
-                    "name": "No",
-                    "pipeline_override": {}
-                },
-                {
                     "name": "Yes",
                     "pipeline_override": {
                         "rich_room_combo": {
@@ -1309,6 +1304,10 @@
                             ]
                         }
                     }
+                },
+                {
+                    "name": "No",
+                    "pipeline_override": {}
                 }
             ]
         },
