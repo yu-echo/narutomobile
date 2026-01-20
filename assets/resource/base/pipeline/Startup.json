@@ -10,12 +10,46 @@
     "start_naruto": {
         "next": [
             "check_main_screen_and_stop",
-            "[JumpBack]before_game",
+            "before_game",
+            "[JumpBack]splash_screen",
+            "[JumpBack]start_up_loading",
             "[JumpBack]close_before_game_notice",
             "[JumpBack]close_teenager_page"
         ],
-        "rate_limit": 5000,
+        "on_error": [
+            "start_up"
+        ],
         "timeout": 30000
+    },
+    "restart_naruto": {
+        "action": "StopApp",
+        "package": "com.tencent.KiHan",
+        "next": [
+            "start_up"
+        ],
+        "focus": "[color:tomato]重启火影[/color]"
+    },
+    "splash_screen": {
+        "recognition": "OCR",
+        "expected": [
+            "腾讯游戏",
+            "魔方工作室",
+            "BANDAI"
+        ],
+        "focus": "[color:DeepSkyBlue]商标页面[/color]"
+    },
+    "start_up_loading": {
+        "recognition": "OCR",
+        "expected": [
+            "%"
+        ],
+        "roi": [
+            558,
+            503,
+            162,
+            113
+        ],
+        "focus": "[color:DeepSkyBlue]游戏加载中...[/color]"
     },
     "before_game": {
         "recognition": "TemplateMatch",
@@ -29,11 +63,15 @@
         ],
         "next": [
             "click_start_game",
+            "[JumpBack]start_up_loading",
+            "[JumpBack]close_teenager_page",
             "[JumpBack]agree_log_in",
             "[JumpBack]agree_info"
         ],
-        "rate_limit": 3000,
-        "timeout": 60000
+        "on_error": [
+            "start_up"
+        ],
+        "timeout": 15000
     },
     "close_teenager_page": {
         "recognition": "TemplateMatch",
@@ -107,8 +145,46 @@
         ],
         "action": "Click",
         "next": [
+            "before_game_loading"
+        ],
+        "on_error": [
             "back_main_screen_and_stop"
         ],
+        "timeout": 5000,
         "focus": "[color:DeepSkyBlue]点击开始游戏[/color]"
+    },
+    "before_game_loading": {
+        "recognition": "OCR",
+        "expected": [
+            "%"
+        ],
+        "roi": [
+            558,
+            503,
+            162,
+            113
+        ],
+        "next": [
+            "without_before_game_loading"
+        ],
+        "focus": "[color:DeepSkyBlue]游戏加载中...[/color]"
+    },
+    "without_before_game_loading": {
+        "recognition": "OCR",
+        "expected": [
+            "%",
+            "资源加载"
+        ],
+        "roi": [
+            558,
+            503,
+            162,
+            113
+        ],
+        "inverse": true,
+        "next": [
+            "back_main_screen_and_stop"
+        ],
+        "focus": "[color:DeepSkyBlue]结束开始加载[/color]"
     }
 }
