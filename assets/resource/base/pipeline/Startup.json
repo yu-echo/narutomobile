@@ -165,6 +165,7 @@
             113
         ],
         "next": [
+            "before_game_loading",
             "without_before_game_loading"
         ],
         "focus": "[color:DeepSkyBlue]游戏加载中...[/color]"
