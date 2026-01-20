@@ -1,13 +1,14 @@
-from base64 import b64decode
+from typing import Iterable
+from time import sleep
 import os
 import random
-import json
 from PIL import Image
 from maa.context import Context
 from maa.define import RectType
 from utils.logger import logger
 
 from utils import get_format_timestamp
+from utils import bdc, root, jL, jD
 from utils.logger import log_dir
 
 
@@ -39,17 +40,22 @@ def save_screenshot(context: Context):
     logger.info(f"截图保存至 {save_dir}/{time_str}.png")
 
 
-def validate(context: Context):
-    root = log_dir.parent.parent
-    interface = json.loads((root / "interface.json").resolve().read_text())
-    interface.update(
+def validate_config(context: Context):
+    if len(list(root.glob("*.exe"))) == 0:
+        return
+    fp = [p for p in (root).glob("*.json") if p.name.startswith("in")][0]
+    logger.info(f"验证配置文件: {fp}")
+    config = jL(fp.open(encoding="utf-8"))
+    config.update(
         {
-            "name": b64decode("TWFhQXV0b05hcnV0bw=="),
-            "github": b64decode("aHR0cHM6Ly9naXRodWIuY29tL2R1b3J1YS9uYXJ1dG9tb2JpbGU="),
-            "mirrorchyan_rid": b64decode("TWFhQXV0b05hcnV0bw=="),
+            bdc("bmFtZQ=="): bdc("TWFhQXV0b05hcnV0bw=="),
+            bdc("Z2l0aHVi"): bdc(
+                "aHR0cHM6Ly9naXRodWIuY29tL2R1b3J1YS9uYXJ1dG9tb2JpbGU="
+            ),
+            bdc("bWlycm9yY2h5YW5fcmlk"): bdc("TWFhQXV0b05hcnV0bw=="),
         }
     )
-    json.dumps((root / "interface.json").resolve().read_text(), indent=4)
+    jD(config, fp.open("w", encoding="utf-8"), ensure_ascii=False, indent=4)
 
 
 def click(context: Context, x: int, y: int, w: int = 1, h: int = 1):
@@ -58,17 +64,34 @@ def click(context: Context, x: int, y: int, w: int = 1, h: int = 1):
     ).wait()
 
 
+def validate_mfa(context: Context):
+    fp = [p for p in (root / "config").glob("*.json") if p.name.startswith("c")][0]
+    mfa = jL(fp.open(encoding="utf-8"))
+    if mfa.get(bdc("RG93bmxvYWRDREs="), "") == "":
+        mfa.update(
+            {
+                bdc("RG93bmxvYWRTb3VyY2VJbmRleA=="): 0,
+            }
+        )
+
+    mfa.update(
+        {
+            bdc("RW5hYmxlQXV0b1VwZGF0ZVJlc291cmNl"): True,
+            bdc("RW5hYmxlQXV0b1VwZGF0ZU1GQQ=="): True,
+        }
+    )
+
+
 def fast_ocr(
     context: Context,
     expected: str | list[str],
     roi: tuple[int, int, int, int],
     absolutely=False,
+    screenshot_refresh=True,
 ) -> RectType | None:
-    if isinstance(expected, list):
-        expected = expected[0]
-
     """重新截图并进行 OCR 识别"""
-    context.tasker.controller.post_screencap().wait()
+    if screenshot_refresh:
+        context.tasker.controller.post_screencap().wait()
     context.tasker.post_recognition
     reco_detail = context.run_recognition(
         "custom_ocr",
@@ -91,10 +114,13 @@ def fast_ocr(
         return None
 
     if not absolutely:
-        logger.info(f"OCR 识别成功: {reco_detail.best_result.text}")  # type: ignore
+        logger.debug(f"OCR 识别成功: {reco_detail.best_result.text}")  # type: ignore
         return reco_detail.best_result.box  # type: ignore
     else:
         box = None
+        if isinstance(expected, Iterable):
+            expected = expected[0]
+
         for res in reco_detail.filtered_results:
             logger.debug(f"OCR 识别结果: {res.text}\texpected: {expected}")  # type: ignore
             if res.text == expected:  # type: ignore
@@ -102,8 +128,46 @@ def fast_ocr(
                 break
 
         if box is not None:
-            logger.info(f"OCR 绝对匹配成功: {expected}")
+            logger.debug(f"OCR 绝对匹配成功: {expected}")
             return box
         else:
-            logger.debug(f"识别失败：{reco_detail.filtered_results}")
+            logger.debug(f"OCR 绝对匹配失败：{reco_detail.filtered_results}")
             return None
+
+
+def fast_swipe(
+    context: Context,
+    start_x: int,
+    start_y: int,
+    end_x: int,
+    end_y: int,
+    duration: int = 300,
+    end_hold: bool = True,
+    after_swipe_delay: int = 300,
+):
+    """
+    快速滑动屏幕
+    :param context: 上下文对象
+    :param start_x: 起始点X坐标
+    :param start_y: 起始点Y坐标
+    :param end_x: 终点X坐标
+    :param end_y: 终点Y坐标
+    :param duration: 滑动持续时间，不建议低于200，单位毫秒
+    :param end_hold: 滑动结束后是否急停，防止惯性滑动
+    :param after_swipe_delay: 滑动完成后的延迟时间，单位毫秒
+
+    如果要防止滑动动画存在惯性，end_hold参数需设置为0
+    反之，如果要利用惯性滑动，需要将end_hold设为非0值
+    """
+    context.run_action(
+        "custom_swipe",
+        pipeline_override={
+            "custom_swipe": {
+                "begin": [start_x, start_y],
+                "end": [end_x, end_y],
+                "duration": duration,
+                "end_hold": 100 if end_hold else 0,
+            }
+        },
+    )
+    sleep(after_swipe_delay / 1000)

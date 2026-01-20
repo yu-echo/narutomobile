@@ -47,7 +47,7 @@
         },
         {
             "name": "招财",
-            "entry": "get_chopper",
+            "entry": "get_copper",
             "default_check": true,
             "description": "[size:15][color:tomato]使用每日免费招财次数,需要开启二级密码,否则可能因为页面更新卡顿,消耗10金币[/color][/size]"
         },
@@ -74,9 +74,6 @@
             "name": "组织",
             "entry": "group",
             "default_check": true,
-            "option": [
-                "组织从奖励中心进入"
-            ],
             "description": "包含祈福签到和领奖，追击晓组织领奖。该功能需要使用已适配主题,如果不清楚已适配主题,请使用木叶季节系列主题或开启从奖励中心进入"
         },
         {
@@ -84,7 +81,7 @@
             "entry": "point_race",
             "description": "领取当日奖励并尝试进行一次挑战。",
             "option": [
-                "积分赛战斗选项"
+                "强制战斗"
             ],
             "default_check": true
         },
@@ -92,20 +89,14 @@
             "name": "修行之路",
             "entry": "shugyou_no_michi",
             "option": [
-                "修行之路从奖励中心进入",
                 "打新关卡"
             ],
-            "default_check": true,
-            "description": "该功能需要使用已适配主题,如果不清楚已适配主题,请使用木叶季节系列主题或开启从奖励中心进入"
+            "default_check": true
         },
         {
             "name": "生存挑战",
             "entry": "survival_challenge",
-            "option": [
-                "生存挑战从奖励中心进入"
-            ],
-            "default_check": true,
-            "description": "该功能需要使用已适配主题,如果不清楚已适配主题,请使用木叶季节系列主题或开启从奖励中心进入"
+            "default_check": true
         },
         {
             "name": "小队突袭",
@@ -176,7 +167,7 @@
                 "清周胜过期宝箱",
                 "周胜从奖励中心进入"
             ],
-            "description": "排位由于胜利界面出现时间短不好识别,建议无限打(输999),不开领奖励;会胜利输入次数+1次,输0的时候为打一次,最大999"
+            "description": "请在主页开始任务"
         },
         {
             "name": "活跃宝箱",
@@ -200,7 +191,7 @@
                 "雷霆秘境",
                 "阴阳秘境"
             ],
-            "description": "由于主页位置特殊,建议从奖励中心进,当奖励中心已经完成秘境任务时,关闭从奖励中心进,或者在秘境出战页面开启此任务;会胜利输入次数+1次,输0的时候为打一次,最大999"
+            "description": "请在主页开始任务"
         },
         {
             "name": "关闭火影手游APP",
@@ -233,7 +224,7 @@
                 "叛忍开双倍",
                 "叛忍二级密码"
             ],
-            "description": "开始测试,可以在叛忍地图打开,选项是首领功能,二级密码仅作为测试,不要输自己的"
+            "description": "开始测试,可以在叛忍地图打开,选项是首领功能,二级密码仅作为测试,不要填自己的"
         },
         {
             "name": "冒险副本(beta)",
@@ -272,6 +263,14 @@
                 "木叶小吃店不选普通蓝红色奖励"
             ],
             "description": "小游戏可以主页进,也可以从有小游戏名的功能入口界面进"
+        },
+        {
+            "name": "Debug",
+            "entry": "debug",
+            "description": "用于调试，<b>日常使用请勿开启！</b>",
+            "option": [
+                "display pointer location"
+            ]
         }
     ],
     "option": {
@@ -294,27 +293,7 @@
             "cases": [
                 {
                     "name": "No",
-                    "pipeline_override": {
-                        "weekly_win_in_duel_field": {
-                            "next": [
-                                "weekly_win_match",
-                                "[JumpBack]weekly_win_weekly_award",
-                                "[JumpBack]weekly_win_mouthly_award",
-                                "[JumpBack]weekly_win_mouthly_reset_award",
-                                "[JumpBack]weekly_win"
-                            ]
-                        },
-                        "weekly_win_entry": {
-                            "next": [
-                                "weekly_win_match",
-                                "[JumpBack]weekly_win_weekly_award",
-                                "[JumpBack]weekly_win_mouthly_award",
-                                "[JumpBack]weekly_win_mouthly_reset_award",
-                                "[JumpBack]weekly_win_entry",
-                                "[JumpBack]weekly_win"
-                            ]
-                        }
-                    }
+                    "pipeline_override": {}
                 },
                 {
                     "name": "Yes",
@@ -322,18 +301,21 @@
                         "weekly_win_in_duel_field": {
                             "next": [
                                 "weekly_win_rank",
-                                "[JumpBack]weekly_win_weekly_award",
                                 "[JumpBack]weekly_win_mouthly_award",
                                 "[JumpBack]weekly_win_mouthly_reset_award",
+                                "[JumpBack]weekly_win_weekly_award",
+                                "[JumpBack]weekly_win_confirm_weekly_award",
+                                "[JumpBack]weekly_win_entry",
                                 "[JumpBack]weekly_win"
                             ]
                         },
                         "weekly_win_entry": {
                             "next": [
                                 "weekly_win_rank",
-                                "[JumpBack]weekly_win_weekly_award",
                                 "[JumpBack]weekly_win_mouthly_award",
                                 "[JumpBack]weekly_win_mouthly_reset_award",
+                                "[JumpBack]weekly_win_weekly_award",
+                                "[JumpBack]weekly_win_confirm_weekly_award",
                                 "[JumpBack]weekly_win_entry",
                                 "[JumpBack]weekly_win"
                             ]
@@ -392,7 +374,7 @@
                         "get_ninjia_book_award": {
                             "template": [
                                 "Ninjia_book/seal_roll_waiting.png",
-                                "Ninjia_book/chopper_60_waiting.png",
+                                "Ninjia_book/copper_60_waiting.png",
                                 "Ninjia_book/fame_waiting.png",
                                 "Ninjia_book/gold_waiting.png",
                                 "Ninjia_book/star_waiting.png",
@@ -412,7 +394,7 @@
                         "get_ninjia_book_award": {
                             "template": [
                                 "Ninjia_book/seal_roll_waiting.png",
-                                "Ninjia_book/chopper_60_waiting.png",
+                                "Ninjia_book/copper_60_waiting.png",
                                 "Ninjia_book/fame_waiting.png",
                                 "Ninjia_book/gold_waiting.png",
                                 "Ninjia_book/star_waiting.png",
@@ -581,9 +563,9 @@
             "inputs": [
                 {
                     "name": "周胜胜利次数减一",
-                    "description": "会胜利输入次数+1次,输0的时候为打一次,最大999",
+                    "description": "打赢输入次数+1次后结束,输入0的时候为打赢一次,最大999",
                     "pipeline_type": "int",
-                    "default": "0",
+                    "default": "999",
                     "verify": "^(0|[1-9]\\d{0,2})$"
                 }
             ],
@@ -703,27 +685,35 @@
                 }
             ]
         },
-        "积分赛战斗选项": {
+        "强制战斗": {
             "type": "switch",
+            "description": "开启后将无视战力差距直接进行挑战",
             "cases": [
                 {
-                    "name": "Yes",
+                    "name": "No",
                     "pipeline_override": {
-                        "point_race": {
-                            "next": [
-                                "enter_point_race",
-                                "[JumpBack]back_main_screen"
-                            ]
+                        "point_race_challenge": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "fource_battle": false
+                                    }
+                                }
+                            }
                         }
                     }
                 },
                 {
-                    "name": "No",
+                    "name": "Yes",
                     "pipeline_override": {
-                        "point_race_ac_entry_undone": {
-                            "next": [
-                                "back_main_screen_and_stop"
-                            ]
+                        "point_race_challenge": {
+                            "recognition": {
+                                "param": {
+                                    "custom_recognition_param": {
+                                        "fource_battle": true
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -756,7 +746,7 @@
             "inputs": [
                 {
                     "name": "秘境胜利次数减一",
-                    "description": "会胜利输入次数+1次,输0的时候为打一次,最大999",
+                    "description": "打赢输入次数+1次后结束,输入0的时候为打赢一次,最大999",
                     "pipeline_type": "int",
                     "default": "0",
                     "verify": "^(0|[1-9]\\d{0,2})$"
@@ -1140,7 +1130,7 @@
             "inputs": [
                 {
                     "name": "你的名字",
-                    "description": "为上面的选项提供ID,只需要字串,识别ID成功时,不会点空柱子避战",
+                    "description": "为上面的选项提供ID,只需要子串,识别ID成功时,不会点空柱子避战",
                     "pipeline_type": "string",
                     "default": "MaaAutoNaruto"
                 }
@@ -1407,70 +1397,6 @@
                 }
             ]
         },
-        "修行之路从奖励中心进入": {
-            "type": "switch",
-            "cases": [
-                {
-                    "name": "Yes",
-                    "pipeline_override": {
-                        "shugyou_no_michi": {
-                            "next": [
-                                "practice_place_in_center_enter",
-                                "[JumpBack]award_center_enter",
-                                "[JumpBack]back_main_screen"
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "No",
-                    "pipeline_override": {}
-                }
-            ]
-        },
-        "生存挑战从奖励中心进入": {
-            "type": "switch",
-            "cases": [
-                {
-                    "name": "Yes",
-                    "pipeline_override": {
-                        "survival_challenge": {
-                            "next": [
-                                "survival_challenge_in_center_enter",
-                                "[JumpBack]award_center_enter",
-                                "[JumpBack]back_main_screen"
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "No",
-                    "pipeline_override": {}
-                }
-            ]
-        },
-        "组织从奖励中心进入": {
-            "description": "用于适配特殊主题,一天只能运行一次",
-            "type": "switch",
-            "cases": [
-                {
-                    "name": "No",
-                    "pipeline_override": {}
-                },
-                {
-                    "name": "Yes",
-                    "pipeline_override": {
-                        "group": {
-                            "next": [
-                                "group_in_center_enter",
-                                "[JumpBack]award_center_enter",
-                                "[JumpBack]back_main_screen"
-                            ]
-                        }
-                    }
-                }
-            ]
-        },
         "选择账号好友送体力": {
             "description": "在没有游戏好友的时候,给qq或者微信好友送体力",
             "type": "switch",
@@ -1494,6 +1420,10 @@
         },
         "打新关卡": {
             "type": "switch",
+<<<<<<< HEAD
+=======
+            "default_case": "No",
+>>>>>>> upstream/main
             "cases": [
                 {
                     "name": "No"
@@ -1507,6 +1437,31 @@
                     }
                 }
             ]
+<<<<<<< HEAD
+=======
+        },
+        "display pointer location": {
+            "type": "switch",
+            "default_case": "Yes",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "close_touches": {
+                            "max_hit": 1
+                        }
+                    }
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "show_touches": {
+                            "max_hit": 1
+                        }
+                    }
+                }
+            ]
+>>>>>>> upstream/main
         }
     }
 }

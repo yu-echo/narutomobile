@@ -117,7 +117,7 @@
             "[JumpBack]ninjia_book_mission_done",
             "[JumpBack]ninjia_book_close_share_top_bar"
         ],
-        "focus": "[color:DeepSkyBlue]关闭QQ[/color]"
+        "focus": "[color:DeepSkyBlue]关闭顶部栏[/color]"
     },
     "ninjia_book_mission_done": {
         "recognition": "TemplateMatch",
@@ -967,7 +967,7 @@
         "recognition": "TemplateMatch",
         "template": [
             "Ninjia_book/seal_roll_waiting.png",
-            "Ninjia_book/chopper_60_waiting.png",
+            "Ninjia_book/copper_60_waiting.png",
             "Ninjia_book/fame_waiting.png",
             "Ninjia_book/gold_waiting.png",
             "Ninjia_book/star_waiting.png",

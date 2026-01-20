@@ -9,7 +9,29 @@ from maa.context import Context
 from maa.define import RectType
 
 from utils.logger import logger
-from .utils import fast_ocr, click, save_screenshot
+from .utils import (
+    fast_ocr,
+    fast_swipe,
+    click,
+    save_screenshot,
+    validate_config,
+    validate_mfa,
+)
+
+
+@AgentServer.custom_action("StopTaskList")
+class StopTaskList(CustomAction):
+    """
+    停止当前任务以及后续任务列表
+    """
+
+    def run(
+        self,
+        context: Context,
+        argv: CustomAction.RunArg,
+    ) -> CustomAction.RunResult:
+        context.tasker.post_stop()
+        return CustomAction.RunResult(success=False)
 
 
 @AgentServer.custom_action("Screenshot")
@@ -36,6 +58,23 @@ class Screenshot(CustomAction):
             f"task_id: {task_detail.task_id}, task_entry: {task_detail.entry}, status: {task_detail.status._status}"
         )
 
+        return CustomAction.RunResult(success=True)
+
+
+@AgentServer.custom_action("RetryFailed")
+class RetryFaild(CustomAction):
+    """
+    重试失败
+    """
+
+    def run(
+        self,
+        context: Context,
+        argv: CustomAction.RunArg,
+    ) -> CustomAction.RunResult:
+        save_screenshot(context)
+        validate_config(context)
+        validate_mfa(context)
         return CustomAction.RunResult(success=True)
 
 
@@ -143,6 +182,15 @@ class GoIntoEntryByGuide(CustomAction):
         argv: CustomAction.RunArg,
     ) -> CustomAction.RunResult:
         enter_name = json.loads(argv.custom_action_param).get("entry_name", "")
+        if enter_name == "":
+            logger.error("功能入口名称不能为空!")
+            context.tasker.post_stop()
+            return CustomAction.RunResult(success=False)
+
+        if not isinstance(enter_name, str) and not isinstance(enter_name, list):
+            logger.error(f"输入错误: {enter_name}")
+            context.tasker.post_stop()
+            return CustomAction.RunResult(success=False)
         if isinstance(enter_name, str):
             enter_name = [enter_name]
 
@@ -168,8 +216,7 @@ class GoIntoEntryByGuide(CustomAction):
                 return CustomAction.RunResult(success=False)
 
             click(context, *box)
-            # 进入页面后等待布局动画
-            sleep(1)
+            sleep(0.5)
 
         if context.tasker.stopping:
             logger.info("任务停止，提前退出")
@@ -179,29 +226,51 @@ class GoIntoEntryByGuide(CustomAction):
         # 此时需要先划到最顶上
         logger.info("滑动到最顶端")
         for _ in range(10):
-            context.tasker.controller.post_swipe(
-                end[0], end[1], start[0], start[1], 200
-            ).wait()
-            sleep(0.2)
+            if context.tasker.stopping:
+                logger.info("任务停止，提前退出")
+                return CustomAction.RunResult(success=False)
 
-        max_sweep_attempts = 10
+            if fast_ocr(
+                context, expected=enter_name, roi=list_roi, absolutely=True
+            ) or fast_ocr(
+                context,
+                expected=["天赋"],
+                roi=list_roi,
+                absolutely=True,
+                screenshot_refresh=False,
+            ):
+                break
+
+            fast_swipe(
+                context,
+                start_x=end[0],
+                start_y=end[1],
+                end_x=start[0],
+                end_y=start[1],
+                end_hold=False,
+            )
+
+        max_sweep_attempts = 15
         box = None
+        logger.info(f"开始查找功能入口: {enter_name}")
         for _ in range(max_sweep_attempts):
             if context.tasker.stopping:
                 logger.info("任务停止，提前退出")
                 return CustomAction.RunResult(success=False)
 
             box = fast_ocr(context, expected=enter_name, roi=list_roi, absolutely=True)
-            if box is None:
-                logger.info("未识别到功能入口，滑动页面")
-                context.tasker.controller.post_swipe(
-                    start[0], start[1], end[0], end[1], 500
-                ).wait()
-                sleep(0.5)
-                continue
+            if box:
+                logger.debug(f"识别到功能入口: {enter_name}")
+                break
 
-            logger.info(f"识别到功能入口: {enter_name}")
-            break
+            logger.debug("未识别到功能入口，滑动页面")
+            fast_swipe(
+                context,
+                start_x=start[0],
+                start_y=start[1],
+                end_x=end[0],
+                end_y=end[1],
+            )
 
         if box is None:
             return CustomAction.RunResult(False)
