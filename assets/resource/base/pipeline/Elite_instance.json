@@ -115,31 +115,19 @@
         "action": "Click",
         "next": [
             "elite_instance_in_fight",
-            "use_energy_not_enough_sign",
-            "[JumpBack]sleep_500ms"
+            "use_energy_not_enough_sign"
         ],
         "post_delay": 900,
         "focus": "[color:DeepSkyBlue]开始战斗[/color]"
     },
     "elite_instance_in_fight": {
-        "recognition": "OCR",
-        "expected": [
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9"
-        ],
+        "recognition": "TemplateMatch",
+        "template": "auto_battle/challenge.png",
         "roi": [
-            491,
+            560,
             0,
-            306,
-            133
+            156,
+            89
         ],
         "next": [
             "elite_instance_auto_fight"
@@ -169,24 +157,13 @@
         "focus": "[color:DeepSkyBlue]打开自动战斗[/color]"
     },
     "elite_instance_not_in_fight": {
-        "recognition": "OCR",
-        "expected": [
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9"
-        ],
+        "recognition": "TemplateMatch",
+        "template": "auto_battle/challenge.png",
         "roi": [
-            491,
+            560,
             0,
-            306,
-            133
+            156,
+            89
         ],
         "inverse": true,
         "next": [

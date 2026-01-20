@@ -83,9 +83,9 @@
         ],
         "post_delay": 900,
         "next": [
-            "hundred_ninjia_not_in_match",
-            "[JumpBack]sleep_500ms"
+            "hundred_ninjia_not_in_match"
         ],
+        "timeout": 60000,
         "focus": "[color:DeepSkyBlue]匹配中[/color]"
     },
     "hundred_ninjia_not_in_match": {
@@ -102,9 +102,9 @@
         "inverse": true,
         "post_delay": 900,
         "next": [
-            "hundred_ninjia_entrance_animation",
-            "[JumpBack]sleep_500ms"
+            "hundred_ninjia_entrance_animation"
         ],
+        "timeout": 60000,
         "focus": "[color:DeepSkyBlue]匹配结束[/color]"
     },
     "hundred_ninjia_entrance_animation": {
@@ -122,8 +122,7 @@
         ],
         "post_delay": 900,
         "next": [
-            "hundred_ninjia_out_entrance_animation",
-            "[JumpBack]sleep_500ms"
+            "hundred_ninjia_out_entrance_animation"
         ],
         "focus": "[color:DeepSkyBlue]百忍进场动画[/color]"
     },
@@ -164,10 +163,10 @@
         "next": [
             "hundred_ninjia_confirm_selcet_ninjia",
             "[JumpBack]hundred_ninjia_selcet_ninjia",
-            "hundred_ninjia_check_fight",
-            "[JumpBack]sleep_500ms"
+            "hundred_ninjia_check_fight"
         ],
         "post_delay": 500,
+        "timeout": 60000,
         "focus": "[color:DeepSkyBlue]进入百忍选忍者[/color]"
     },
     "hundred_ninjia_confirm_selcet_ninjia": {
@@ -184,9 +183,9 @@
         "action": "Click",
         "next": [
             "hundred_ninjia_check_fight",
-            "[JumpBack]hundred_ninjia_selcet_ninjia",
-            "[JumpBack]sleep_500ms"
+            "[JumpBack]hundred_ninjia_selcet_ninjia"
         ],
+        "timeout": 60000,
         "focus": "[color:DeepSkyBlue]百忍对决确定选忍者[/color]"
     },
     "hundred_ninjia_fight": {
@@ -284,10 +283,10 @@
         "action": "Click",
         "next": [
             "hundred_ninjia_match",
-            "[JumpBack]hundred_ninjia_confirm_game_over",
-            "[JumpBack]sleep_500ms"
+            "[JumpBack]hundred_ninjia_confirm_game_over"
         ],
         "post_delay": 4000,
+        "timeout": 60000,
         "focus": "[color:DeepSkyBlue]百忍对决战斗结束[/color]"
     },
     "hundred_ninjia_click_All_skill": {

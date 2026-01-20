@@ -390,8 +390,7 @@
             "[JumpBack]battle_again",
             "[JumpBack]weekly_win_substitution",
             "[JumpBack]battle_end",
-            "[JumpBack]go_to_war",
-            "[JumpBack]sleep_500ms"
+            "[JumpBack]go_to_war"
         ],
         "post_delay": 1000,
         "timeout": 40000,

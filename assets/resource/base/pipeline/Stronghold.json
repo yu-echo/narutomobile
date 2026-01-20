@@ -210,9 +210,9 @@
             "[JumpBack]stronghold_in_stronghold",
             "[JumpBack]stronghold_in_match",
             "[JumpBack]stronghold_match_win",
-            "stronghold_finished",
-            "[JumpBack]sleep_500ms"
+            "stronghold_finished"
         ],
+        "timeout": 30000,
         "focus": "[color:DeepSkyBlue]匹配中[/color]"
     },
     "stronghold_match_win": {
@@ -274,8 +274,7 @@
             "[JumpBack]battle_tips",
             "[JumpBack]stronghold_click_All_skill",
             "[JumpBack]stronghold_match_win",
-            "stronghold_finished",
-            "[JumpBack]sleep_500ms"
+            "stronghold_finished"
         ],
         "timeout": 3000,
         "pre_delay": 0,

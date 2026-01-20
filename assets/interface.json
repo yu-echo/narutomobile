@@ -372,15 +372,13 @@
                             "next": [
                                 "hundred_ninjia_confirm_selcet_ninjia",
                                 "[JumpBack]hundred_ninjia_selcet_ninjia",
-                                "hundred_ninjia_fight",
-                                "[JumpBack]sleep_500ms"
+                                "hundred_ninjia_fight"
                             ]
                         },
                         "hundred_ninjia_confirm_selcet_ninjia": {
                             "next": [
                                 "hundred_ninjia_fight",
-                                "[JumpBack]hundred_ninjia_selcet_ninjia",
-                                "[JumpBack]sleep_500ms"
+                                "[JumpBack]hundred_ninjia_selcet_ninjia"
                             ]
                         },
                         "hundred_ninjia_check_no_fight": {

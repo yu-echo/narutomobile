@@ -415,9 +415,9 @@
             "right_swipe_for_empty_column",
             "left_swipe_for_empty_column",
             "up_swipe_for_empty_column",
-            "sky_ground_in_main",
-            "[JumpBack]sleep_500ms"
+            "sky_ground_in_main"
         ],
+        "timeout": 60000,
         "focus": "[color:DeepSkyBlue]前往空柱子[/color]"
     },
     "sky_ground_to_award_column": {

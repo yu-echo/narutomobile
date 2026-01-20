@@ -1,3 +1,4 @@
+from random import randint
 from typing import Iterable
 from time import sleep
 import os
@@ -159,14 +160,17 @@ def fast_swipe(
     如果要防止滑动动画存在惯性，end_hold参数需设置为0
     反之，如果要利用惯性滑动，需要将end_hold设为非0值
     """
+
+    # 滑动参数增加随机噪声
+    # 以防魔方真投入
     context.run_action(
         "custom_swipe",
         pipeline_override={
             "custom_swipe": {
-                "begin": [start_x, start_y],
-                "end": [end_x, end_y],
-                "duration": duration,
-                "end_hold": 100 if end_hold else 0,
+                "begin": [start_x, start_y, 100, 100],
+                "end": [end_x, end_y, 100, 100],
+                "duration": randint(duration - 100, duration + 100),
+                "end_hold": randint(100, 200) if end_hold else 0,
             }
         },
     )

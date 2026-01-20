@@ -185,9 +185,9 @@
         "action": "Click",
         "next": [
             "more_gameplay_trace_vanish_in_match",
-            "[JumpBack]more_gameplay_in_trace_vanish",
-            "[JumpBack]sleep_500ms"
-        ]
+            "[JumpBack]more_gameplay_in_trace_vanish"
+        ],
+        "timeout": 60000
     },
     "more_gameplay_go_fight": {
         "recognition": "TemplateMatch",
@@ -234,9 +234,9 @@
         "next": [
             "more_gameplay_trace_vanish_choose_ninja",
             "more_gameplay_trace_vanish_confirm_fight",
-            "[JumpBack]more_gameplay_go_fight",
-            "[JumpBack]sleep_500ms"
+            "[JumpBack]more_gameplay_go_fight"
         ],
+        "timeout": 60000,
         "post_delay": 400
     },
     "more_gameplay_trace_vanish_choose_ninja": {
@@ -255,9 +255,9 @@
             "more_gameplay_match_win",
             "more_gameplay_trace_vanish_confirm_selcet_ninjia",
             "more_gameplay_trace_vanish_check_fight",
-            "[JumpBack]more_gameplay_trace_vanish_choose_ninja",
-            "[JumpBack]sleep_500ms"
-        ]
+            "[JumpBack]more_gameplay_trace_vanish_choose_ninja"
+        ],
+        "timeout": 60000
     },
     "more_gameplay_match_win": {
         "recognition": "OCR",
@@ -295,10 +295,10 @@
         "next": [
             "more_gameplay_trace_vanish_choose_ninja",
             "more_gameplay_trace_vanish_confirm_fight",
-            "[JumpBack]more_gameplay_go_fight",
-            "[JumpBack]sleep_500ms"
+            "[JumpBack]more_gameplay_go_fight"
         ],
         "post_delay": 500,
+        "timeout": 60000,
         "focus": "[color:DeepSkyBlue]回到战斗[/color]"
     },
     "more_gameplay_trace_vanish_confirm_selcet_ninjia": {

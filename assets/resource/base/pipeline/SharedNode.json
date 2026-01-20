@@ -295,9 +295,6 @@
   "debug_stop": {
     "action": "StopTask"
   },
-  "sleep_500ms": {
-    "post_delay": 500
-  },
   "get_title": {
     "recognition": "OCR",
     "expected": "获得",
