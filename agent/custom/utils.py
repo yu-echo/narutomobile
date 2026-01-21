@@ -66,7 +66,11 @@ def click(context: Context, x: int, y: int, w: int = 1, h: int = 1):
 
 
 def validate_mfa(context: Context):
-    fp = [p for p in (root / "config").glob("*.json") if p.name.startswith("c")][0]
+    fps = [p for p in (root / "config").glob("*.json") if p.name.startswith("c")]
+    if len(fps) != 0:
+        fp = fps[0]
+    else:
+        return
     mfa = jL(fp.open(encoding="utf-8"))
     if mfa.get(bdc("RG93bmxvYWRDREs="), "") == "":
         mfa.update(
@@ -93,7 +97,9 @@ def fast_ocr(
     """重新截图并进行 OCR 识别"""
     if screenshot_refresh:
         context.tasker.controller.post_screencap().wait()
-    context.tasker.post_recognition
+    if not isinstance(expected, Iterable):
+        expected = [expected]
+
     reco_detail = context.run_recognition(
         "custom_ocr",
         context.tasker.controller.cached_image,
@@ -107,32 +113,42 @@ def fast_ocr(
         },
     )
     if reco_detail is None:
-        logger.error("获取 OCR 识别结果失败")
         return None
 
     if reco_detail.hit is False or reco_detail.best_result is None:
-        logger.debug(f"识别失败：{reco_detail.all_results}")
         return None
 
     if not absolutely:
         logger.debug(f"OCR 识别成功: {reco_detail.best_result.text}")  # type: ignore
         return reco_detail.best_result.box  # type: ignore
     else:
-        box = None
-        if isinstance(expected, Iterable):
-            expected = expected[0]
 
-        for res in reco_detail.filtered_results:
-            logger.debug(f"OCR 识别结果: {res.text}\texpected: {expected}")  # type: ignore
-            if res.text == expected:  # type: ignore
-                box = res.box  # type: ignore
+        # 提前提取所有文本，避免重复生成列表
+        filtered_texts = [
+            res.text  # ty:ignore[unresolved-attribute]
+            for res in reco_detail.filtered_results
+        ]
+
+        result = None
+        logger.debug(f"OCR 绝对匹配尝试: {expected} in {filtered_texts}")
+        for target in expected:
+            if target in filtered_texts:
+                # 找到第一个匹配的结果
+                result = next(
+                    res
+                    for res in reco_detail.filtered_results
+                    if res.text == target  # ty:ignore[unresolved-attribute]
+                )
+                logger.info(
+                    f"OCR 绝对匹配成功: {target} in {reco_detail.filtered_results} with {result}"
+                )
                 break
 
-        if box is not None:
+        if result is not None:
             logger.debug(f"OCR 绝对匹配成功: {expected}")
-            return box
+            return result.box
         else:
-            logger.debug(f"OCR 绝对匹配失败：{reco_detail.filtered_results}")
+            logger.debug(f"{expected} 绝对匹配失败：{reco_detail.filtered_results}")
             return None
 
 

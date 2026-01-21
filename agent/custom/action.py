@@ -205,11 +205,11 @@ class GoIntoEntryByGuide(CustomAction):
         box = fast_ocr(context=context, expected=["倒计时"], roi=(450, 31, 250, 54))
         if box is None:
             logger.debug("该账号不为回归账号")
-            start = [70, 600]
+            start = [70, 500]
             end = [70, 200]
         else:
             logger.debug("该账号为回归账号")
-            start = [300, 600]
+            start = [300, 500]
             end = [300, 200]
             box = fast_ocr(context, expected=["忍界指引"], roi=(6, 886, 249, 173))
             if box is None:
@@ -231,13 +231,10 @@ class GoIntoEntryByGuide(CustomAction):
                 return CustomAction.RunResult(success=False)
 
             if fast_ocr(
-                context, expected=enter_name, roi=list_roi, absolutely=True
-            ) or fast_ocr(
                 context,
-                expected=["天赋"],
+                expected=["天赋"] + enter_name,
                 roi=list_roi,
                 absolutely=True,
-                screenshot_refresh=False,
             ):
                 break
 
@@ -250,7 +247,7 @@ class GoIntoEntryByGuide(CustomAction):
                 end_hold=False,
             )
 
-        max_sweep_attempts = 15
+        max_sweep_attempts = 20
         box = None
         logger.info(f"开始查找功能入口: {enter_name}")
         for _ in range(max_sweep_attempts):
