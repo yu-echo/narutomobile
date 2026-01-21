@@ -6,30 +6,27 @@
             "initial_value": 0
         },
         "next": [
-            "weekly_win_in_duel_field",
-            "[JumpBack]weekly_win_entry",
+            "goto_duel_field",
+            "[JumpBack]open_ninjia_guide",
             "[JumpBack]back_main_screen"
         ],
         "focus": "[color:DeepSkyBlue]开始周胜任务[/color]"
     },
-    "weekly_win_entry": {
-        "recognition": "TemplateMatch",
-        "template": "Startup/main_green_masked.png",
-        "green_mask": true,
+    "goto_duel_field": {
+        "recognition": "Custom",
+        "custom_recognition": "IsInNinjiaGuide",
         "action": "Custom",
-        "custom_action": "GoIntoEntry",
-        "custom_action_param": {
-            "template": "home/决斗场"
+        "custom_action": "GoIntoEntryByGuide",
+        "custom_recognition_param": {
+            "entry_name": "忍术对战"
         },
         "post_delay": 1500,
         "focus": "[color:DeepSkyBlue]进入决斗场[/color]",
         "next": [
-            "weekly_win_match",
             "[JumpBack]weekly_win_mouthly_award",
             "[JumpBack]weekly_win_mouthly_reset_award",
             "[JumpBack]weekly_win_weekly_award",
             "[JumpBack]weekly_win_confirm_weekly_award",
-            "[JumpBack]weekly_win_entry",
             "[JumpBack]weekly_win"
         ]
     },
@@ -109,7 +106,6 @@
             184
         ],
         "next": [
-            "weekly_win_match",
             "[JumpBack]weekly_win_weekly_award",
             "[JumpBack]weekly_win_confirm_weekly_award",
             "[JumpBack]weekly_win_mouthly_award",
@@ -118,48 +114,6 @@
         ],
         "post_delay": 1000,
         "focus": "[color:DeepSkyBlue]已在决斗场界面[/color]"
-    },
-    "weekly_win_match": {
-        "recognition": "OCR",
-        "expected": [
-            "忍",
-            "术",
-            "对",
-            "决"
-        ],
-        "roi": [
-            254,
-            609,
-            123,
-            47
-        ],
-        "action": "Swipe",
-        "duration": 50,
-        "next": [
-            "go_to_war",
-            "weekly_win_match"
-        ],
-        "post_delay": 1000,
-        "focus": "[color:DeepSkyBlue]匹配模式[/color]"
-    },
-    "weekly_win_rank": {
-        "recognition": "OCR",
-        "expected": [
-            "段位"
-        ],
-        "roi": [
-            336,
-            520,
-            397,
-            200
-        ],
-        "action": "Click",
-        "next": [
-            "weekly_win_check_in_rank",
-            "weekly_win_rank"
-        ],
-        "post_delay": 1000,
-        "focus": "[color:DeepSkyBlue]排位模式[/color]"
     },
     "weekly_win_match_fighting": {
         "recognition": "TemplateMatch",
@@ -360,24 +314,6 @@
         ],
         "threshold": 0.8,
         "focus": "[color:DeepSkyBlue]战斗结束[/color]"
-    },
-    "weekly_win_check_in_rank": {
-        "recognition": "OCR",
-        "expected": [
-            "段",
-            "位"
-        ],
-        "roi": [
-            516,
-            577,
-            441,
-            143
-        ],
-        "next": [
-            "go_to_war",
-            "weekly_win_check_in_rank"
-        ],
-        "post_delay": 500
     },
     "go_to_war": {
         "recognition": "TemplateMatch",
@@ -854,7 +790,6 @@
         ],
         "next": [
             "go_to_war",
-            "weekly_win_match",
             "[JumpBack]weekly_win_weekly_award",
             "[JumpBack]weekly_win_confirm_weekly_award",
             "[JumpBack]weekly_win_mouthly_award",
