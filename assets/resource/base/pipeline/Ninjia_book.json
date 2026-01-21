@@ -39,7 +39,8 @@
         "green_mask": true,
         "action": "Click",
         "next": [
-            "ninjia_book_leaderboard"
+            "ninjia_book_leaderboard",
+            "ninjia_book_undone"
         ],
         "post_wait_freezes": 300,
         "focus": "[color:DeepSkyBlue]忍法帖未完成[/color]"
@@ -56,6 +57,8 @@
         "threshold": 0.8,
         "action": "Click",
         "next": [
+            "ninjia_book_share_to_qq",
+            "share_back_to_natuto",
             "close_ninjia_book_qq_share"
         ],
         "pre_wait_freezes": 1000,
@@ -85,6 +88,8 @@
         "threshold": 0.8,
         "action": "Click",
         "next": [
+            "ninjia_book_share_to_wechat",
+            "share_back_to_natuto",
             "close_ninjia_book_wechat_share"
         ],
         "pre_wait_freezes": 1000,
