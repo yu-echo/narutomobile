@@ -132,7 +132,8 @@
         "next": [
             "elite_instance_auto_fight"
         ],
-        "post_delay": 900,
+        "pre_delay": 0,
+        "post_delay": 0,
         "focus": "[color:DeepSkyBlue]战斗中[/color]"
     },
     "elite_instance_auto_fight": {
