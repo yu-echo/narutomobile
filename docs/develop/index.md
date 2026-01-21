@@ -1,12 +1,9 @@
 # Maa Auto Naruto 开发环境搭建与开发指南
 
-:::warning
-
-警告：本项目目前的开发文档尚未完善！
-
-你可以先阅读[M9A 开发须知](https://1999.fan/zh_cn/develop/development.html)以了解如何在本地以开发模式运行项目（本项目与M9A的项目结构类似，可以作为学习参考）。更多内容请自行学习MaaFramework的[开发文档](https://github.com/MaaXYZ/MaaFramework/blob/main/docs/zh_cn/1.1-%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.md)的内容。
-
-:::
+> [!WARNING]
+> 本项目目前的开发文档尚未完善！
+>
+> 你可以先阅读[M9A 开发须知](https://1999.fan/zh_cn/develop/development.html)以了解如何在本地以开发模式运行项目（本项目与M9A的项目结构类似，可以作为学习参考）。更多内容请自行学习MaaFramework的[开发文档](https://github.com/MaaXYZ/MaaFramework/blob/main/docs/zh_cn/1.1-%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.md)的内容。
 
 ## 1. 开发环境配置
 
@@ -37,10 +34,9 @@
 
 访问华为云镜像站下载 Python：
 
-:::info
-**镜像地址：** [https://repo.huaweicloud.com/python/3.12.9/](https://repo.huaweicloud.com/python/3.12.9/)
-**推荐下载：** [https://repo.huaweicloud.com/python/3.12.9/python-3.12.9.exe](https://repo.huaweicloud.com/python/3.12.9/python-3.12.9.exe)
-:::
+> [!NOTE]
+> **镜像地址：** [https://repo.huaweicloud.com/python/3.12.9/](https://repo.huaweicloud.com/python/3.12.9/)
+> **推荐下载：** [https://repo.huaweicloud.com/python/3.12.9/python-3.12.9.exe](https://repo.huaweicloud.com/python/3.12.9/python-3.12.9.exe)
 
 ### 2.2 安装 Python
 
@@ -57,9 +53,8 @@ git clone https://github.com/duorua/narutomobile.git
 cd narutomobile
 ```
 
-:::tip
-确保您已经安装了 Git 工具，否则无法执行上述命令。
-:::
+> [!TIP]
+> 确保您已经安装了 Git 工具，否则无法执行上述命令。
 
 ---
 
@@ -107,12 +102,10 @@ pip install -r requirements.txt
 # pip install -U requirements.txt  # 或使用 pip install --upgrade requirements.txt
 ```
 
-:::note
-
-- 虚拟环境可以隔离项目依赖，避免与系统 Python 环境冲突
-- 如果不使用虚拟环境，可以直接执行 `pip install -r requirements.txt`
-
-:::
+> [!NOTE]  
+>
+> - 虚拟环境可以隔离项目依赖，避免与系统 Python 环境冲突
+> - 如果不使用虚拟环境，可以直接执行 `pip install -r requirements.txt`
 
 ---
 
