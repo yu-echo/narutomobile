@@ -9,7 +9,6 @@
                 "GoIntoEntryByGuide",
                 "StopTaskList",
                 "RetryFailed",
-                "ResetCounter",
                 "IsCounterOverflow"
             ]
         },
@@ -29,9 +28,6 @@
                 },
                 {
                     "$ref": "#/$defs/RetryFailedParam"
-                },
-                {
-                    "$ref": "#/$defs/ResetCounterParam"
                 },
                 {
                     "$ref": "#/$defs/IsCounterOverflowParam"
@@ -112,24 +108,6 @@
             "description": "保存截图并重新验证配置",
             "markdownDescription": "保存截图并重新验证配置\n\n**功能说明：**\n- 该动作通常作为 `on_error` 后备操作\n- 执行时保存当前截图\n- 重新验证配置文件有效性\n\n**返回值：**\n- `success`: 始终返回 true",
             "properties": {}
-        },
-        "ResetCounterParam": {
-            "type": "object",
-            "description": "重置计数器",
-            "markdownDescription": "重置计数器\n\n**功能说明：**\n- 重置内部计数器为指定的初始值\n- 计数器用于跟踪任务执行次数\n- 返回 true，继续执行后续任务\n\n**参数说明：**\n- `initial_value`: 计数器的初始值\n  - 类型：整数\n  - 必填\n  - 示例：`0`\n\n**返回值：**\n- `success`: 始终返回 true",
-            "properties": {
-                "initial_value": {
-                    "title": "Initial Value Property",
-                    "description": "计数器的初始值",
-                    "type": "integer",
-                    "default": 0,
-                    "minimum": 0,
-                    "markdownDescription": "*integer*\n\n计数器的初始值。必填。"
-                }
-            },
-            "required": [
-                "initial_value"
-            ]
         },
         "IsCounterOverflowParam": {
             "type": "object",

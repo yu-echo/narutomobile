@@ -1,7 +1,5 @@
 {
     "weekly_win": {
-        "action": "Custom",
-        "custom_action": "ResetCounter",
         "next": [
             "goto_duel_field",
             "[JumpBack]open_ninjia_guide",

@@ -8,6 +8,7 @@ from maa.context import Context
 from maa.define import RectType
 
 from utils.logger import logger
+from utils.counter import counter
 from .utils import (
     fast_ocr,
     fast_swipe,
@@ -286,22 +287,6 @@ class GoIntoEntryByGuide(CustomAction):
             return CustomAction.RunResult(True)
 
 
-count = None
-
-
-@AgentServer.custom_action("ResetCounter")
-class ResetCounter(CustomAction):
-    def run(
-        self,
-        context: Context,
-        argv: CustomAction.RunArg,
-    ) -> CustomAction.RunResult:
-        global count
-        count = json.loads(argv.custom_action_param).get("initial_value", 0)
-        logger.debug(f"计数器已重置为{count}")
-        return CustomAction.RunResult(success=True)
-
-
 @AgentServer.custom_action("IsCounterOverflow")
 class IsCounterOverflow(CustomAction):
     def run(
@@ -321,17 +306,15 @@ class IsCounterOverflow(CustomAction):
         else:
             max_hit = int(max_hit)
 
-        global count
-        if count is None:
-            logger.error("计数器未初始化，请先使用 ResetCounter 动作进行初始化")
-            context.tasker.post_stop()
-            return CustomAction.RunResult(success=False)
         if max_hit <= 0:
             logger.error("max_hit 参数错误，请检查")
             context.tasker.post_stop()
             return CustomAction.RunResult(success=False)
 
-        count += 1
+        job = context.get_task_job()
+        counter.increment(job.job_id)
+        count = counter.get_count(job.job_id)
+
         logger.debug(f"计数器当前值为: {count}")
         if not (count < max_hit):
             logger.debug(f"计数器溢出！最大值: {max_hit} 当前值: {count} ")
