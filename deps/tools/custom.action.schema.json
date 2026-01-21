@@ -1,36 +1,64 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "type": "object",
-    "properties": {
-        "custom_action": {
-            "enum": [
-                "Screenshot",
-                "GoIntoEntry",
-                "GoIntoEntryByGuide",
-                "StopTaskList",
-                "RetryFailed"
+    "oneOf": [
+        {
+            "properties": {
+                "custom_action": {
+                    "const": "Screenshot"
+                },
+                "custom_action_param": {
+                    "$ref": "#/$defs/ScreenshotParam"
+                }
+            }
+        },
+        {
+            "properties": {
+                "custom_action": {
+                    "const": "GoIntoEntry"
+                },
+                "custom_action_param": {
+                    "$ref": "#/$defs/GoIntoEntryParam"
+                }
+            },
+            "required": [
+                "custom_action_param"
             ]
         },
-        "custom_action_param": {
-            "anyOf": [
-                {
-                    "$ref": "#/$defs/ScreenshotParam"
+        {
+            "properties": {
+                "custom_action": {
+                    "const": "GoIntoEntryByGuide"
                 },
-                {
-                    "$ref": "#/$defs/GoIntoEntryParam"
-                },
-                {
+                "custom_action_param": {
                     "$ref": "#/$defs/GoIntoEntryByGuideParam"
+                }
+            },
+            "required": [
+                "custom_action_param"
+            ]
+        },
+        {
+            "properties": {
+                "custom_action": {
+                    "const": "StopTaskList"
                 },
-                {
+                "custom_action_param": {
                     "$ref": "#/$defs/StopTaskListParam"
+                }
+            }
+        },
+        {
+            "properties": {
+                "custom_action": {
+                    "const": "RetryFailed"
                 },
-                {
+                "custom_action_param": {
                     "$ref": "#/$defs/RetryFailedParam"
                 }
-            ]
+            }
         }
-    },
+    ],
     "$defs": {
         "ScreenshotParam": {
             "type": "object",
