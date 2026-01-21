@@ -1,58 +1,36 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "type": "object",
-    "oneOf": [
-        {
-            "properties": {
-                "custom_recognition": {
-                    "const": "FindToChallenge"
-                },
-                "custom_recognition_param": {
+    "properties": {
+        "custom_recognition": {
+            "enum": [
+                "FindToChallenge",
+                "FindPlantableFlower",
+                "FlipCard",
+                "find_bonds_without_enough_token",
+                "IsInNinjiaGuide"
+            ]
+        },
+        "custom_recognition_param": {
+            "anyOf": [
+                {
                     "$ref": "#/$defs/FindToChallengeParam"
-                }
-            }
-        },
-        {
-            "properties": {
-                "custom_recognition": {
-                    "const": "FindPlantableFlower"
                 },
-                "custom_recognition_param": {
+                {
                     "$ref": "#/$defs/FindPlantableFlowerParam"
-                }
-            }
-        },
-        {
-            "properties": {
-                "custom_recognition": {
-                    "const": "FlipCard"
                 },
-                "custom_recognition_param": {
+                {
                     "$ref": "#/$defs/FlipCardParam"
-                }
-            }
-        },
-        {
-            "properties": {
-                "custom_recognition": {
-                    "const": "find_bonds_without_enough_token"
                 },
-                "custom_recognition_param": {
+                {
                     "$ref": "#/$defs/FindBondsWithoutEnoughTokenParam"
-                }
-            }
-        },
-        {
-            "properties": {
-                "custom_recognition": {
-                    "const": "IsInNinjiaGuide"
                 },
-                "custom_recognition_param": {
+                {
                     "$ref": "#/$defs/IsInNinjiaGuideParam"
                 }
-            }
+            ]
         }
-    ],
+    },
     "$defs": {
         "FindToChallengeParam": {
             "type": "object",

@@ -1,64 +1,44 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "type": "object",
-    "oneOf": [
-        {
-            "properties": {
-                "custom_action": {
-                    "const": "Screenshot"
-                },
-                "custom_action_param": {
+    "properties": {
+        "custom_action": {
+            "enum": [
+                "Screenshot",
+                "GoIntoEntry",
+                "GoIntoEntryByGuide",
+                "StopTaskList",
+                "RetryFailed",
+                "ResetCounter",
+                "IsCounterOverflow"
+            ]
+        },
+        "custom_action_param": {
+            "anyOf": [
+                {
                     "$ref": "#/$defs/ScreenshotParam"
-                }
-            }
-        },
-        {
-            "properties": {
-                "custom_action": {
-                    "const": "GoIntoEntry"
                 },
-                "custom_action_param": {
+                {
                     "$ref": "#/$defs/GoIntoEntryParam"
-                }
-            },
-            "required": [
-                "custom_action_param"
-            ]
-        },
-        {
-            "properties": {
-                "custom_action": {
-                    "const": "GoIntoEntryByGuide"
                 },
-                "custom_action_param": {
+                {
                     "$ref": "#/$defs/GoIntoEntryByGuideParam"
-                }
-            },
-            "required": [
-                "custom_action_param"
-            ]
-        },
-        {
-            "properties": {
-                "custom_action": {
-                    "const": "StopTaskList"
                 },
-                "custom_action_param": {
+                {
                     "$ref": "#/$defs/StopTaskListParam"
-                }
-            }
-        },
-        {
-            "properties": {
-                "custom_action": {
-                    "const": "RetryFailed"
                 },
-                "custom_action_param": {
+                {
                     "$ref": "#/$defs/RetryFailedParam"
+                },
+                {
+                    "$ref": "#/$defs/ResetCounterParam"
+                },
+                {
+                    "$ref": "#/$defs/IsCounterOverflowParam"
                 }
-            }
+            ]
         }
-    ],
+    },
     "$defs": {
         "ScreenshotParam": {
             "type": "object",
@@ -132,6 +112,42 @@
             "description": "保存截图并重新验证配置",
             "markdownDescription": "保存截图并重新验证配置\n\n**功能说明：**\n- 该动作通常作为 `on_error` 后备操作\n- 执行时保存当前截图\n- 重新验证配置文件有效性\n\n**返回值：**\n- `success`: 始终返回 true",
             "properties": {}
+        },
+        "ResetCounterParam": {
+            "type": "object",
+            "description": "重置计数器",
+            "markdownDescription": "重置计数器\n\n**功能说明：**\n- 重置内部计数器为指定的初始值\n- 计数器用于跟踪任务执行次数\n- 返回 true，继续执行后续任务\n\n**参数说明：**\n- `initial_value`: 计数器的初始值\n  - 类型：整数\n  - 必填\n  - 示例：`0`\n\n**返回值：**\n- `success`: 始终返回 true",
+            "properties": {
+                "initial_value": {
+                    "title": "Initial Value Property",
+                    "description": "计数器的初始值",
+                    "type": "integer",
+                    "default": 0,
+                    "minimum": 0,
+                    "markdownDescription": "*integer*\n\n计数器的初始值。必填。"
+                }
+            },
+            "required": [
+                "initial_value"
+            ]
+        },
+        "IsCounterOverflowParam": {
+            "type": "object",
+            "description": "检查计数器是否超过阈值",
+            "markdownDescription": "检查计数器是否超过阈值\n\n**功能说明：**\n- 检查内部计数器是否达到或超过指定的最大次数\n- 如果计数器值 >= max_hit，返回 false，执行 on_error 分支\n- 如果计数器值 < max_hit，返回 true，执行 next 分支\n- 每次执行此动作后，计数器自动递增\n\n**参数说明：**\n- `max_hit`: 计数器的最大阈值\n  - 类型：整数\n  - 必填\n  - 示例：`1` 表示最多允许1次，当达到1次后返回false\n\n**返回值：**\n- `success`: 当计数器 < max_hit 时返回 true，否则返回 false\n\n**使用场景：**\n- 限制某个任务的执行次数\n- 防止无限循环\n- 完成目标次数后停止任务",
+            "properties": {
+                "max_hit": {
+                    "title": "Max Hit Property",
+                    "description": "计数器的最大阈值，达到此值后返回false",
+                    "type": "integer",
+                    "default": 1,
+                    "minimum": 1,
+                    "markdownDescription": "*integer*\n\n计数器的最大阈值。必填。"
+                }
+            },
+            "required": [
+                "max_hit"
+            ]
         }
     }
 }

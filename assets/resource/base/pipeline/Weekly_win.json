@@ -1,5 +1,10 @@
 {
     "weekly_win": {
+        "action": "Custom",
+        "custom_action": "ResetCounter",
+        "custom_action_param": {
+            "initial_value": 0
+        },
         "next": [
             "weekly_win_in_duel_field",
             "[JumpBack]weekly_win_entry",
@@ -247,10 +252,14 @@
             190,
             190
         ],
-        "next": [
-            "go_to_war_agian",
-            "back_main_screen_and_stop"
-        ]
+        "action": "Custom",
+        "custom_action": "IsCounterOverflow",
+        "custom_action_param": {
+            "max_hit": 1
+        },
+        "next": "go_to_war_agian",
+        "$doc": "action 结果为false时会走on_error分支",
+        "on_error": "back_main_screen_and_stop"
     },
     "go_to_war_agian": {
         "action": "DoNothing",

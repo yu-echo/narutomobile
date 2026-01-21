@@ -285,3 +285,48 @@ class GoIntoEntryByGuide(CustomAction):
         else:
             click(context, *box)
             return CustomAction.RunResult(True)
+
+
+count = None
+
+
+@AgentServer.custom_action("ResetCounter")
+class ResetCounter(CustomAction):
+    def run(
+        self,
+        context: Context,
+        argv: CustomAction.RunArg,
+    ) -> CustomAction.RunResult:
+        global count
+        count = json.loads(argv.custom_action_param).get("initial_value", 0)
+        logger.debug(f"计数器已重置为{count}")
+        return CustomAction.RunResult(success=True)
+
+
+@AgentServer.custom_action("IsCounterOverflow")
+class IsCounterOverflow(CustomAction):
+    def run(
+        self,
+        context: Context,
+        argv: CustomAction.RunArg,
+    ) -> CustomAction.RunResult:
+        param = json.loads(argv.custom_action_param)
+        max_hit = param.get("max_hit", 0)
+
+        global count
+        if count is None:
+            logger.error("计数器未初始化，请先使用 ResetCounter 动作进行初始化")
+            context.tasker.post_stop()
+            return CustomAction.RunResult(success=False)
+        if max_hit <= 0:
+            logger.error("max_hit 参数错误，请检查")
+            context.tasker.post_stop()
+            return CustomAction.RunResult(success=False)
+
+        count += 1
+        logger.debug(f"计数器当前值为: {count}")
+        if not (count < max_hit):
+            logger.debug(f"计数器溢出！最大值: {max_hit} 当前值: {count} ")
+            return CustomAction.RunResult(success=False)
+
+        return CustomAction.RunResult(success=True)
