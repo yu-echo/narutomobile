@@ -801,7 +801,7 @@
                 {
                     "name": "No",
                     "pipeline_override": {
-                        "secret_realm_flip_accessory_card": {
+                        "secret_realm_accessory_card": {
                             "enabled": false
                         }
                     }
@@ -826,7 +826,7 @@
                 {
                     "name": "No",
                     "pipeline_override": {
-                        "secret_realm_flip_gear_card": {
+                        "secret_realm_gear_card": {
                             "enabled": false
                         }
                     }

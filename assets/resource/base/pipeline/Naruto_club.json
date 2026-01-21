@@ -472,11 +472,69 @@
             74
         ],
         "action": "Click",
+        "max_hit": 5,
         "next": [
             "benefit_station",
-            "close_village_entry"
+            "close_village_entry",
+            "without_benefit_station"
         ],
         "post_wait_freezes": 500,
+        "focus": "[color:DeepSkyBlue]关闭村口[/color]"
+    },
+    "without_benefit_station": {
+        "recognition": "TemplateMatch",
+        "template": "Naruto_club/benefit_station.png",
+        "roi": [
+            735,
+            221,
+            61,
+            83
+        ],
+        "inverse": true,
+        "next": [
+            "try_flash_benefit_station_by_village_entry"
+        ],
+        "post_wait_freezes": 400,
+        "focus": "[color:DarkGoldenRod]可以把福利站还给我吗[/color]"
+    },
+    "try_flash_benefit_station_by_village_entry": {
+        "recognition": "OCR",
+        "expected": [
+            "村口"
+        ],
+        "roi": [
+            1151,
+            423,
+            61,
+            82
+        ],
+        "action": "Click",
+        "next": [
+            "try_flash_benefit_station_close_village_entry"
+        ],
+        "post_wait_freezes": 400,
+        "focus": "[color:DeepSkyBlue]进入村口刷新福利站[/color]"
+    },
+    "try_flash_benefit_station_close_village_entry": {
+        "recognition": "OCR",
+        "expected": [
+            "首页"
+        ],
+        "roi": [
+            1154,
+            95,
+            61,
+            74
+        ],
+        "action": "Click",
+        "max_hit": 5,
+        "next": [
+            "benefit_station"
+        ],
+        "on_error": [
+            "back_main_screen_and_stop"
+        ],
+        "timeout": 2000,
         "focus": "[color:DeepSkyBlue]关闭村口[/color]"
     },
     "benefit_station": {
