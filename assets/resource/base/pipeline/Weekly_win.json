@@ -187,10 +187,15 @@
         "post_delay": 500,
         "next": [
             "weekly_win_success",
-            "[JumpBack]weekly_win_rank_up",
-            "win_to_entry"
+            "weekly_win_rank_up",
+            "win_counter"
         ],
         "focus": "[color:DeepSkyBlue]战斗胜利[/color]"
+    },
+    "win_counter": {
+        "action": "Custom",
+        "custom_action": "CounterIncrement",
+        "next": []
     },
     "win_to_entry": {
         "recognition": "TemplateMatch",
@@ -202,17 +207,21 @@
             190
         ],
         "action": "Custom",
-        "custom_action": "IsCounterOverflow",
-        "custom_action_param": {
-            "max_hit": 1
-        },
-        "next": "go_to_war_agian",
-        "$doc": "action 结果为false时会走on_error分支",
-        "on_error": "back_main_screen_and_stop"
+        "custom_action": "CounterIncrement",
+        "next": [
+            "go_to_war_again",
+            "weekly_win_stop"
+        ]
     },
-    "go_to_war_agian": {
-        "action": "DoNothing",
+    "go_to_war_again": {
+        "recognition": "Custom",
+        "custom_recognition": "IsCounterOverflow",
+        "$doc": "JumpBack to 'go_to_war'",
         "focus": "再来一把！"
+    },
+    "weekly_win_stop": {
+        "next": "back_main_screen_and_stop",
+        "focus": "[color:DeepSkyBlue]周胜任务结束[/color]"
     },
     "weekly_win_rank_up": {
         "recognition": "OCR",
@@ -263,7 +272,7 @@
         "post_delay": 500,
         "next": [
             "weekly_win_without_fail",
-            "[JumpBack]weekly_win_fail"
+            "weekly_win_fail"
         ],
         "focus": "[color:DeepSkyBlue]战斗失败[/color]"
     },
@@ -487,7 +496,7 @@
         "action": "Click",
         "next": [
             "weekly_win_in_duel_mission",
-            "[JumpBack]weekly_win_duel_mission"
+            "weekly_win_duel_mission"
         ],
         "post_wait_freezes": 400,
         "focus": "[color:DeepSkyBlue]进入决斗任务[/color]"
@@ -744,69 +753,5 @@
         ],
         "post_delay": 500,
         "focus": "[color:DeepSkyBlue]回到战斗[/color]"
-    },
-    "weekly_win_in_center_enter": {
-        "recognition": "TemplateMatch",
-        "template": [
-            "SharedNode/check_not_in_daily_award.png",
-            "SharedNode/check_in_daily_award.png"
-        ],
-        "roi": [
-            37,
-            172,
-            130,
-            47
-        ],
-        "action": "Click",
-        "next": [
-            "weekly_win_ac_entry_undone",
-            "weekly_win_ac_done",
-            "[JumpBack]swipe_for_award_center_find"
-        ],
-        "post_wait_freezes": 400,
-        "focus": "[color:DeepSkyBlue]检测是否已在奖励中心[/color]"
-    },
-    "weekly_win_ac_entry_undone": {
-        "recognition": "TemplateMatch",
-        "template": "Weekly_win/weekly_win_ac_undone.png",
-        "roi": [
-            180,
-            288,
-            1100,
-            225
-        ],
-        "threshold": 0.9,
-        "green_mask": true,
-        "target_offset": [
-            12,
-            116,
-            -40,
-            -114
-        ],
-        "next": [
-            "go_to_war",
-            "[JumpBack]weekly_win_weekly_award",
-            "[JumpBack]weekly_win_confirm_weekly_award",
-            "[JumpBack]weekly_win_mouthly_award",
-            "[JumpBack]weekly_win_mouthly_reset_award",
-            "weekly_win_ac_entry_undone"
-        ],
-        "action": "Click",
-        "post_wait_freezes": 500,
-        "focus": "[color:DeepSkyBlue]进入决斗场[/color]"
-    },
-    "weekly_win_ac_done": {
-        "recognition": "TemplateMatch",
-        "template": "SharedNode/center_entry_end.png",
-        "roi": [
-            180,
-            384,
-            1100,
-            118
-        ],
-        "next": [
-            "back_main_screen_and_stop"
-        ],
-        "focus": "[color:DeepSkyBlue]周胜已完成[/color]"
     }
 }
