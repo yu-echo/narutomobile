@@ -617,7 +617,7 @@
                     "pipeline_override": {
                         "win_to_entry": {
                             "next": [
-                                "go_to_war_agian",
+                                "go_to_war_again",
                                 "weekly_win_duel_mission",
                                 "back_main_screen_and_stop"
                             ]
@@ -643,7 +643,7 @@
                     "pipeline_override": {
                         "win_to_entry": {
                             "next": [
-                                "go_to_war_agian",
+                                "go_to_war_again",
                                 "weekly_win_duel_mission",
                                 "back_main_screen_and_stop"
                             ]
@@ -685,7 +685,7 @@
                     "pipeline_override": {
                         "weekly_win": {
                             "next": [
-                                "weekly_win_in_center_enter",
+                                "go_to_war_again",
                                 "[JumpBack]award_center_enter",
                                 "[JumpBack]back_main_screen"
                             ]
