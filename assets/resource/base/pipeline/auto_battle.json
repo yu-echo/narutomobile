@@ -217,13 +217,14 @@
     "recognition": "TemplateMatch",
     "template": "Weekly_win/battle_emoji.png",
     "green_mask": true,
-    "threshold": 0.5,
+    "threshold": 0.7,
     "roi": [
       5,
       267,
       79,
       68
     ],
+    "method": 10001,
     "action": "MultiSwipe",
     "swipes": [
       {
