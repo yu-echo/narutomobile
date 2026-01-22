@@ -287,37 +287,13 @@ class GoIntoEntryByGuide(CustomAction):
             return CustomAction.RunResult(True)
 
 
-@AgentServer.custom_action("IsCounterOverflow")
-class IsCounterOverflow(CustomAction):
+@AgentServer.custom_action("CounterIncrement")
+class CounterIncrement(CustomAction):
     def run(
         self,
         context: Context,
         argv: CustomAction.RunArg,
     ) -> CustomAction.RunResult:
-        param = json.loads(argv.custom_action_param)
-        max_hit = param.get("max_hit", "0")
-        if isinstance(max_hit, int):
-            max_hit = str(max_hit)
-
-        if not max_hit.isdecimal():
-            logger.error(f"max_hit 参数填写错误: {max_hit}")
-            context.tasker.post_stop()
-            return CustomAction.RunResult(success=False)
-        else:
-            max_hit = int(max_hit)
-
-        if max_hit <= 0:
-            logger.error("max_hit 参数错误，请检查")
-            context.tasker.post_stop()
-            return CustomAction.RunResult(success=False)
-
         job = context.get_task_job()
         counter.increment(job.job_id)
-        count = counter.get_count(job.job_id)
-
-        logger.debug(f"计数器当前值为: {count}")
-        if not (count < max_hit):
-            logger.debug(f"计数器溢出！最大值: {max_hit} 当前值: {count} ")
-            return CustomAction.RunResult(success=False)
-
         return CustomAction.RunResult(success=True)

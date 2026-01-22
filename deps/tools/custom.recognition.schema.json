@@ -8,7 +8,8 @@
                 "FindPlantableFlower",
                 "FlipCard",
                 "find_bonds_without_enough_token",
-                "IsInNinjiaGuide"
+                "IsInNinjiaGuide",
+                "IsCounterOverflow"
             ]
         },
         "custom_recognition_param": {
@@ -27,6 +28,9 @@
                 },
                 {
                     "$ref": "#/$defs/IsInNinjiaGuideParam"
+                },
+                {
+                    "$ref": "#/$defs/IsCounterOverflowParam"
                 }
             ]
         }
@@ -67,6 +71,24 @@
             "description": "判断是否在忍者指南界面",
             "markdownDescription": "判断是否在忍者指南界面\n\n**功能说明：**\n- 调用 `in_ninjia_guide` 识别器进行判断\n- 如果识别成功，返回识别区域\n\n**返回值：**\n- `box`: 识别到的区域，识别失败时返回None\n- `detail`: 空对象",
             "properties": {}
+        },
+        "IsCounterOverflowParam": {
+            "type": "object",
+            "description": "检查计数器是否超过阈值",
+            "markdownDescription": "检查计数器是否超过阈值\n\n**功能说明：**\n- 检查内部计数器是否达到或超过指定的最大次数\n- 如果计数器值 >= max_hit，返回 None，表示识别未命中（触发 on_error）\n- 如果计数器值 < max_hit，返回 (0,0,1,1)，表示识别命中（触发 next）\n\n**参数说明：**\n- `max_hit`: 计数器的最大阈值\n  - 类型：整数\n  - 必填\n  - 示例：`1` 表示最多允许1次，当达到1次后返回None\n\n**返回值：**\n- `box`: 当计数器 < max_hit 时返回 (0,0,1,1)，否则返回 None\n\n**使用场景：**\n- 作为管线节点中的 `recognition` 使用，控制逻辑分支",
+            "properties": {
+                "max_hit": {
+                    "title": "Max Hit Property",
+                    "description": "计数器的最大阈值，达到此值后返回None",
+                    "type": "integer",
+                    "default": 1,
+                    "minimum": 1,
+                    "markdownDescription": "*integer*\n\n计数器的最大阈值。必填。"
+                }
+            },
+            "required": [
+                "max_hit"
+            ]
         }
     }
 }
