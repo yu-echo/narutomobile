@@ -196,6 +196,8 @@
     "win_counter": {
         "action": "Custom",
         "custom_action": "CounterIncrement",
+        "pre_delay": 0,
+        "post_delay": 0,
         "next": [
             "go_to_war_again",
             "weekly_win_stop"
@@ -210,6 +212,8 @@
             190,
             190
         ],
+        "pre_delay": 0,
+        "post_delay": 0,
         "action": "Custom",
         "custom_action": "CounterIncrement",
         "next": [
@@ -220,6 +224,8 @@
     "go_to_war_again": {
         "recognition": "Custom",
         "custom_recognition": "IsCounterOverflow",
+        "pre_delay": 0,
+        "post_delay": 0,
         "custom_recognition_param": {
             "max_hit": 2
         },
@@ -227,6 +233,8 @@
         "focus": "再来一把！"
     },
     "weekly_win_stop": {
+        "pre_delay": 0,
+        "post_delay": 0,
         "next": "back_main_screen_and_stop",
         "focus": "[color:DeepSkyBlue]周胜任务结束[/color]"
     },
