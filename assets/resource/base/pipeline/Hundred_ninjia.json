@@ -82,8 +82,7 @@
         "next": [
             "hundred_ninjia_not_in_match"
         ],
-        "timeout": 60000,
-        "focus": "[color:DeepSkyBlue]匹配中[/color]"
+        "timeout": 60000
     },
     "hundred_ninjia_not_in_match": {
         "recognition": "OCR",

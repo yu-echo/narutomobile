@@ -437,8 +437,7 @@
             368,
             139,
             122
-        ],
-        "focus": "[color:darkgray]匹配中[/color]"
+        ]
     },
     "weekly_win_rank_ban": {
         "recognition": "TemplateMatch",

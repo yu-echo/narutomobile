@@ -247,8 +247,7 @@
             "[JumpBack]stronghold_match_win",
             "stronghold_finished"
         ],
-        "timeout": 30000,
-        "focus": "[color:DeepSkyBlue]匹配中[/color]"
+        "timeout": 30000
     },
     "stronghold_match_win": {
         "recognition": "OCR",
