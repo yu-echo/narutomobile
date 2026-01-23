@@ -765,7 +765,7 @@
             ],
             "pipeline_override": {
                 "secret_realm_check_overflow": {
-                    "custom_action_param": {
+                    "custom_recognition_param": {
                         "max_hit": "{秘境胜利次数}"
                     }
                 }
@@ -831,8 +831,8 @@
                         "secret_realm_win": {
                             "next": [
                                 "secret_realm_flip_without_card",
-                                "[JumpBack]secret_realm_flip_accessory_card",
-                                "secret_realm_flip_gear_card",
+                                "[JumpBack]secret_realm_accessory_card",
+                                "secret_realm_gear_card",
                                 "secret_realm_celebreate",
                                 "[JumpBack]secret_realm_win"
                             ]
@@ -848,7 +848,7 @@
                 {
                     "name": "No",
                     "pipeline_override": {
-                        "secret_realm_flip_gear_card": {
+                        "secret_realm_gear_card": {
                             "enabled": false
                         }
                     }
