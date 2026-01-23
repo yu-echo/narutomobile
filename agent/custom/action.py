@@ -294,6 +294,6 @@ class CounterIncrement(CustomAction):
         context: Context,
         argv: CustomAction.RunArg,
     ) -> CustomAction.RunResult:
-        job = context.get_task_job()
-        counter.increment(job.job_id)
+        task_id = argv.task_detail.task_id
+        counter.increment(task_id)
         return CustomAction.RunResult(success=True)

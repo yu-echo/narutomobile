@@ -53,27 +53,17 @@ class IsCounterOverflow(CustomRecognition):
         self, context: Context, argv: CustomRecognition.AnalyzeArg
     ) -> CustomRecognition.AnalyzeResult:
         param = json.loads(argv.custom_recognition_param)
-        max_hit = param.get("max_hit", "0")
-        if isinstance(max_hit, int):
-            max_hit = str(max_hit)
-
-        if not max_hit.isdecimal():
-            logger.error(f"max_hit 参数填写错误: {max_hit}")
-            context.tasker.post_stop()
-            return CustomRecognition.AnalyzeResult(box=None, detail={})
-        else:
-            max_hit = int(max_hit)
+        max_hit = int(param.get("max_hit", "0"))
 
         if max_hit <= 0:
             logger.error("max_hit 参数错误，请检查")
             context.tasker.post_stop()
             return CustomRecognition.AnalyzeResult(box=None, detail={})
 
-        job = context.get_task_job()
-        if counter.get_count(job.job_id) >= max_hit:
-            logger.debug(
-                f"计数器溢出！最大值: {max_hit} 当前值: {counter.get_count(job.job_id)} "
-            )
+        task_id = argv.task_detail.task_id
+        now_count = counter.get_count(task_id)
+        if now_count >= max_hit:
+            logger.debug(f"计数器溢出！最大值: {max_hit} 当前值: {now_count} ")
             logger.info("达到最大执行次数")
             return CustomRecognition.AnalyzeResult(box=None, detail={})
 
