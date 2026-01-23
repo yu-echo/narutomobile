@@ -1,8 +1,8 @@
 {
     "hundred_ninjia": {
         "next": [
-            "hundred_ninjia_entry",
             "hundred_ninjia_match",
+            "[JumpBack]hundred_ninjia_entry",
             "[JumpBack]back_main_screen"
         ],
         "focus": "[color:DeepSkyBlue]进入百忍子任务[/color]"
@@ -46,9 +46,6 @@
             450
         ],
         "action": "Click",
-        "next": [
-            "hundred_ninjia_match"
-        ],
         "post_wait_freezes": 1000,
         "focus": "[color:DeepSkyBlue]进入百忍对决[/color]"
     },
