@@ -123,11 +123,11 @@
         ],
         "green_mask": true,
         "next": [
-            "[JumpBack]winner_decided",
             "[JumpBack]click_All_skill",
+            "[JumpBack]winner_decided",
             "battle_tips"
         ],
-        "timeout": 3000,
+        "timeout": 5000,
         "pre_delay": 0,
         "post_delay": 0,
         "focus": "[color:DeepSkyBlue]开始战斗[/color]"
