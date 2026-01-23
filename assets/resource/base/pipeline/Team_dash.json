@@ -360,7 +360,6 @@
         ],
         "pre_delay": 0,
         "post_delay": 0,
-        "focus": "[color:darkgray]加载战斗[/color]"
     },
     "team_dash_do_not_remind_gold": {
         "recognition": "TemplateMatch",
@@ -393,7 +392,6 @@
             "[JumpBack]team_dash_sweep_win"
         ],
         "rate_limit": 5000,
-        "focus": "[color:DeepSkyBlue]正在进行小队突袭战斗[/color]"
     },
     "team_dash_sweep_win": {
         "recognition": "TemplateMatch",
