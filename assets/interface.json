@@ -595,7 +595,7 @@
             "inputs": [
                 {
                     "name": "周胜胜利次数",
-                    "description": "打赢输入次数，最大999",
+                    "description": "打赢输入次数,最大999",
                     "pipeline_type": "int",
                     "default": "999",
                     "verify": "^(0|[1-9]\\d{0,2})$"

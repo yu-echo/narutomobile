@@ -51,7 +51,7 @@
         "template": "Headhunt/no_free_headhunt.png",
         "pre_delay": 0,
         "post_delay": 0,
-        "$doc": "因为高招有动画，所以这里不设post_wait_freezes",
+        "$doc": "因为高招有动画,所以这里不设post_wait_freezes",
         "next": [
             "headhunt_recruit_enter"
         ],
@@ -105,8 +105,10 @@
         "focus": "[color:DeepSkyBlue]确认免费高级招募[/color]"
     },
     "headhunt_recruit_enter": {
-        "recognition": "TemplateMatch",
-        "template": "Headhunt/recruit_done.png",
+        "recognition": "OCR",
+        "expected": [
+            "普通"
+        ],
         "roi": [
             0,
             119,
@@ -114,7 +116,6 @@
             523
         ],
         "action": "Click",
-        "threshold": 0.85,
         "pre_delay": 0,
         "post_delay": 0,
         "post_wait_freezes": 500,
@@ -122,6 +123,10 @@
             "headhunt_recruit_no_free",
             "[JumpBack]headhunt_recruit"
         ],
+        "on_error": [
+            "back_main_screen_and_stop"
+        ],
+        "timeout": 2000,
         "focus": "[color:DeepSkyBlue]进入普通招募[/color]"
     },
     "headhunt_recruit_no_free": {

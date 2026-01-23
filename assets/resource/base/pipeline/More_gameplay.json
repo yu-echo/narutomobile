@@ -39,7 +39,7 @@
             "more_gameplay_in_duel_field",
             "[JumpBack]weekly_win_mouthly_award",
             "[JumpBack]weekly_win_mouthly_reset_award",
-            "[JumoBack]more_gameplay_entry"
+            "[JumpBack]more_gameplay_entry"
         ],
         "green_mask": true,
         "post_delay": 1500,
