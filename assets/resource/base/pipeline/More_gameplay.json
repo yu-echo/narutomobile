@@ -36,10 +36,9 @@
         "action": "Swipe",
         "duration": 30,
         "next": [
-            "more_gameplay_in_duel_field",
             "[JumpBack]weekly_win_mouthly_award",
             "[JumpBack]weekly_win_mouthly_reset_award",
-            "[JumpBack]more_gameplay_entry"
+            "more_gameplay_entry"
         ],
         "green_mask": true,
         "post_delay": 1500,
@@ -60,7 +59,7 @@
         "action": "Click",
         "next": [
             "more_gameplay_in_select_gameplay",
-            "[JumpBack]more_gameplay_to_select_gameplay"
+            "more_gameplay_to_select_gameplay"
         ],
         "post_wait_freezes": 400
     },
