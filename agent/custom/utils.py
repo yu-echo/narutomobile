@@ -93,7 +93,7 @@ def fast_ocr(
                     for res in reco_detail.filtered_results
                     if res.text == target  # ty:ignore[unresolved-attribute]
                 )
-                logger.info(
+                logger.debug(
                     f"OCR 绝对匹配成功: {target} in {reco_detail.filtered_results} with {result}"
                 )
                 break
