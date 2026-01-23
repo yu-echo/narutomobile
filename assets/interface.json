@@ -275,7 +275,8 @@
             "entry": "debug",
             "description": "用于调试，<b>日常使用请勿开启！</b>",
             "option": [
-                "display pointer location"
+                "display_pointer_location",
+                "display_touch"
             ]
         }
     ],
@@ -1486,23 +1487,36 @@
                 }
             ]
         },
-        "display pointer location": {
+        "display_pointer_location": {
             "type": "switch",
-            "default_case": "Yes",
+            "default_case": "No",
+            "description": "<b>WARNING!</b> The position top bar may invalidate the close button for some windows.",
             "cases": [
                 {
-                    "name": "No",
+                    "name": "No"
+                },
+                {
+                    "name": "Yes",
                     "pipeline_override": {
-                        "close_touches": {
-                            "max_hit": 1
+                        "show_pointer_location": {
+                            "enabled": true
                         }
                     }
+                }
+            ]
+        },
+        "display_touch": {
+            "type": "switch",
+            "default_case": "No",
+            "cases": [
+                {
+                    "name": "No"
                 },
                 {
                     "name": "Yes",
                     "pipeline_override": {
                         "show_touches": {
-                            "max_hit": 1
+                            "enabled": true
                         }
                     }
                 }
