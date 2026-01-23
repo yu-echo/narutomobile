@@ -8,6 +8,7 @@ from typing import List, Tuple, Dict, Optional, Any
 import re
 
 from utils.logger import logger
+from utils.counter import counter
 
 
 def correct_senryoku_text(source_text: str) -> int | None:
@@ -44,6 +45,39 @@ def get_senryoku(context: Context, image: ndarray, roi: list[int]) -> int | None
 
     source_text = str(reco_detail.best_result.text)  # type: ignore
     return correct_senryoku_text(source_text)
+
+
+@AgentServer.custom_recognition("IsCounterOverflow")
+class IsCounterOverflow(CustomRecognition):
+    def analyze(
+        self, context: Context, argv: CustomRecognition.AnalyzeArg
+    ) -> CustomRecognition.AnalyzeResult:
+        param = json.loads(argv.custom_recognition_param)
+        max_hit = param.get("max_hit", "0")
+        if isinstance(max_hit, int):
+            max_hit = str(max_hit)
+
+        if not max_hit.isdecimal():
+            logger.error(f"max_hit 参数填写错误: {max_hit}")
+            context.tasker.post_stop()
+            return CustomRecognition.AnalyzeResult(box=None, detail={})
+        else:
+            max_hit = int(max_hit)
+
+        if max_hit <= 0:
+            logger.error("max_hit 参数错误，请检查")
+            context.tasker.post_stop()
+            return CustomRecognition.AnalyzeResult(box=None, detail={})
+
+        job = context.get_task_job()
+        if counter.get_count(job.job_id) >= max_hit:
+            logger.debug(
+                f"计数器溢出！最大值: {max_hit} 当前值: {counter.get_count(job.job_id)} "
+            )
+            logger.info("达到最大执行次数")
+            return CustomRecognition.AnalyzeResult(box=None, detail={})
+
+        return CustomRecognition.AnalyzeResult(box=Rect(0, 0, 1, 1), detail={})
 
 
 @AgentServer.custom_recognition("IsInNinjiaGuide")

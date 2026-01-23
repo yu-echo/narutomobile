@@ -43,7 +43,11 @@
         "recognition": {
             "type": "OCR",
             "param": {
-                "expected": ".*"
+                "expected": ".*",
+                "replace": [
+                    "丑术",
+                    "忍术"
+                ]
             }
         }
     },

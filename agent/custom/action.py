@@ -2,13 +2,13 @@ import json
 from time import sleep
 from typing import Optional, Tuple
 
-
 from maa.agent.agent_server import AgentServer, TaskDetail
 from maa.custom_action import CustomAction
 from maa.context import Context
 from maa.define import RectType
 
 from utils.logger import logger
+from utils.counter import counter
 from .utils import (
     fast_ocr,
     fast_swipe,
@@ -205,11 +205,11 @@ class GoIntoEntryByGuide(CustomAction):
         box = fast_ocr(context=context, expected=["倒计时"], roi=(450, 31, 250, 54))
         if box is None:
             logger.debug("该账号不为回归账号")
-            start = [70, 600]
+            start = [70, 500]
             end = [70, 200]
         else:
             logger.debug("该账号为回归账号")
-            start = [300, 600]
+            start = [300, 500]
             end = [300, 200]
             box = fast_ocr(context, expected=["忍界指引"], roi=(6, 886, 249, 173))
             if box is None:
@@ -231,13 +231,10 @@ class GoIntoEntryByGuide(CustomAction):
                 return CustomAction.RunResult(success=False)
 
             if fast_ocr(
-                context, expected=enter_name, roi=list_roi, absolutely=True
-            ) or fast_ocr(
                 context,
-                expected=["天赋"],
+                expected=["天赋"] + enter_name,
                 roi=list_roi,
                 absolutely=True,
-                screenshot_refresh=False,
             ):
                 break
 
@@ -250,7 +247,7 @@ class GoIntoEntryByGuide(CustomAction):
                 end_hold=False,
             )
 
-        max_sweep_attempts = 15
+        max_sweep_attempts = 20
         box = None
         logger.info(f"开始查找功能入口: {enter_name}")
         for _ in range(max_sweep_attempts):
@@ -288,3 +285,15 @@ class GoIntoEntryByGuide(CustomAction):
         else:
             click(context, *box)
             return CustomAction.RunResult(True)
+
+
+@AgentServer.custom_action("CounterIncrement")
+class CounterIncrement(CustomAction):
+    def run(
+        self,
+        context: Context,
+        argv: CustomAction.RunArg,
+    ) -> CustomAction.RunResult:
+        job = context.get_task_job()
+        counter.increment(job.job_id)
+        return CustomAction.RunResult(success=True)

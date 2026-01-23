@@ -50,7 +50,7 @@
         "next": [
             "stronghold_gameplay",
             "no_group",
-            "[JumpBack]stronghold_entry"
+            "stronghold_entry"
         ],
         "on_error": [
             "stronghold"

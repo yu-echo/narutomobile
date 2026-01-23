@@ -3,7 +3,7 @@
         "next": [
             "rebel_ninja_only_me",
             "rebel_ninja_in_battlefield",
-            "rebel_ninja_entry",
+            "goto_rebel_ninja_by_guide",
             "[JumpBack]open_ninjia_guide"
         ],
         "on_error": [
@@ -12,36 +12,9 @@
         "timeout": 1500,
         "focus": "[color:DeepSkyBlue]进入叛忍来袭子任务[/color]"
     },
-    "rebel_ninja_entry": {
-        "recognition": "Or",
-        "any_of": [
-            {
-                "sub_name": "mission_label",
-                "recognition": "OCR",
-                "expected": [
-                    "任务"
-                ],
-                "roi": [
-                    968,
-                    68,
-                    307,
-                    100
-                ]
-            },
-            {
-                "sub_name": "activity_count_down",
-                "recognition": "OCR",
-                "expected": [
-                    "倒计时"
-                ],
-                "roi": [
-                    400,
-                    0,
-                    350,
-                    135
-                ]
-            }
-        ],
+    "goto_rebel_ninja_by_guide": {
+        "recognition": "Custom",
+        "custom_recognition": "IsInNinjiaGuide",
         "action": "Custom",
         "custom_action": "GoIntoEntryByGuide",
         "custom_action_param": {
@@ -50,7 +23,7 @@
         "next": [
             "rebel_ninja_gameplay",
             "no_group",
-            "[JumpBack]rebel_ninja_entry"
+            "goto_rebel_ninja_by_guide"
         ],
         "on_error": [
             "rebel_ninja"

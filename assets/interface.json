@@ -184,7 +184,6 @@
             "name": "秘境(beta)",
             "entry": "secret_realm",
             "option": [
-                "秘境从奖励中心进入",
                 "秘境赢几次",
                 "秘境翻饰品牌",
                 "秘境翻忍具牌",
@@ -337,32 +336,23 @@
             "cases": [
                 {
                     "name": "No",
-                    "pipeline_override": {}
+                    "pipeline_override": {
+                        "goto_duel_field": {
+                            "custom_action_param": {
+                                "entry_name": "忍术对战"
+                            },
+                            "focus": "[color:DeepSkyBlue]进入段位赛[/color]"
+                        }
+                    }
                 },
                 {
                     "name": "Yes",
                     "pipeline_override": {
-                        "weekly_win_in_duel_field": {
-                            "next": [
-                                "weekly_win_rank",
-                                "[JumpBack]weekly_win_mouthly_award",
-                                "[JumpBack]weekly_win_mouthly_reset_award",
-                                "[JumpBack]weekly_win_weekly_award",
-                                "[JumpBack]weekly_win_confirm_weekly_award",
-                                "[JumpBack]weekly_win_entry",
-                                "[JumpBack]weekly_win"
-                            ]
-                        },
-                        "weekly_win_entry": {
-                            "next": [
-                                "weekly_win_rank",
-                                "[JumpBack]weekly_win_mouthly_award",
-                                "[JumpBack]weekly_win_mouthly_reset_award",
-                                "[JumpBack]weekly_win_weekly_award",
-                                "[JumpBack]weekly_win_confirm_weekly_award",
-                                "[JumpBack]weekly_win_entry",
-                                "[JumpBack]weekly_win"
-                            ]
+                        "goto_duel_field": {
+                            "custom_action_param": {
+                                "entry_name": "段位赛"
+                            },
+                            "focus": "[color:DeepSkyBlue]进入段位赛[/color]"
                         }
                     }
                 }
@@ -604,16 +594,18 @@
             "description": "周胜胜利次数设置",
             "inputs": [
                 {
-                    "name": "周胜胜利次数减一",
-                    "description": "打赢输入次数+1次后结束,输入0的时候为打赢一次,最大999",
+                    "name": "周胜胜利次数",
+                    "description": "打赢输入次数，最大999",
                     "pipeline_type": "int",
                     "default": "999",
                     "verify": "^(0|[1-9]\\d{0,2})$"
                 }
             ],
             "pipeline_override": {
-                "go_to_war_agian": {
-                    "max_hit": "{周胜胜利次数减一}"
+                "win_to_entry": {
+                    "custom_action_param": {
+                        "max_hit": "{周胜胜利次数}"
+                    }
                 }
             }
         },
@@ -625,7 +617,7 @@
                     "pipeline_override": {
                         "win_to_entry": {
                             "next": [
-                                "go_to_war_agian",
+                                "go_to_war_again",
                                 "weekly_win_duel_mission",
                                 "back_main_screen_and_stop"
                             ]
@@ -651,7 +643,7 @@
                     "pipeline_override": {
                         "win_to_entry": {
                             "next": [
-                                "go_to_war_agian",
+                                "go_to_war_again",
                                 "weekly_win_duel_mission",
                                 "back_main_screen_and_stop"
                             ]
@@ -693,7 +685,7 @@
                     "pipeline_override": {
                         "weekly_win": {
                             "next": [
-                                "weekly_win_in_center_enter",
+                                "go_to_war_again",
                                 "[JumpBack]award_center_enter",
                                 "[JumpBack]back_main_screen"
                             ]
@@ -761,42 +753,23 @@
                 }
             ]
         },
-        "秘境从奖励中心进入": {
-            "type": "switch",
-            "cases": [
-                {
-                    "name": "Yes",
-                    "pipeline_override": {
-                        "secret_realm": {
-                            "next": [
-                                "secret_realm_in_secret_realm",
-                                "secret_realm_in_center_enter",
-                                "[JumpBack]award_center_enter",
-                                "[JumpBack]back_main_screen"
-                            ]
-                        }
-                    }
-                },
-                {
-                    "name": "No"
-                }
-            ]
-        },
         "秘境赢几次": {
             "description": "秘境胜利次数设置",
             "type": "input",
             "inputs": [
                 {
-                    "name": "秘境胜利次数减一",
-                    "description": "打赢输入次数+1次后结束,输入0的时候为打赢一次,最大999",
+                    "name": "秘境胜利次数",
+                    "description": "打赢输入次数，最大999",
                     "pipeline_type": "int",
                     "default": "0",
                     "verify": "^(0|[1-9]\\d{0,2})$"
                 }
             ],
             "pipeline_override": {
-                "secret_realm_celebreate": {
-                    "max_hit": "{秘境胜利次数减一}"
+                "secret_realm_check_overflow": {
+                    "custom_action_param": {
+                        "max_hit": "{秘境胜利次数}"
+                    }
                 }
             }
         },
@@ -863,15 +836,13 @@
                                 "[JumpBack]secret_realm_flip_accessory_card",
                                 "secret_realm_flip_gear_card",
                                 "secret_realm_celebreate",
-                                "secret_realm_last_celebreate",
                                 "[JumpBack]secret_realm_win"
                             ]
                         },
                         "secret_realm_flip_gear_card": {
                             "next": [
                                 "secret_realm_win_back_secret_realm",
-                                "secret_realm_celebreate",
-                                "secret_realm_last_celebreate"
+                                "secret_realm_celebreate"
                             ]
                         }
                     }
