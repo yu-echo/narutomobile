@@ -153,7 +153,7 @@
             50
         ],
         "duration": 400,
-        "post_delay": 1000,
+        "post_delay": 0,
         "max_hit": 10,
         "focus": "[color:DeepSkyBlue]滑动寻找评论[/color]"
     },
@@ -180,16 +180,17 @@
             "Naruto_club/surf_post.png"
         ],
         "roi": [
-            583,
-            58,
-            56,
-            662
+            519,
+            73,
+            113,
+            646
         ],
         "threshold": [
             0.9
         ],
         "max_hit": 8,
         "action": "Click",
+        "pre_delay": 0,
         "post_wait_freezes": 500,
         "focus": "[color:DeepSkyBlue]选择有评论话题[/color]"
     },
