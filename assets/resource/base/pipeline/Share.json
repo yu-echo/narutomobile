@@ -2,9 +2,7 @@
     "share": {
         "next": [
             "share_in_center_enter",
-            "[JumpBack]award_center_enter"
-        ],
-        "on_error": [
+            "[JumpBack]award_center_enter",
             "[JumpBack]back_main_screen"
         ],
         "timeout": 1500,

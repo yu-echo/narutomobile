@@ -123,9 +123,6 @@
             "headhunt_recruit_no_free",
             "[JumpBack]headhunt_recruit"
         ],
-        "on_error": [
-            "back_main_screen_and_stop"
-        ],
         "timeout": 2000,
         "focus": "[color:DeepSkyBlue]进入普通招募[/color]"
     },

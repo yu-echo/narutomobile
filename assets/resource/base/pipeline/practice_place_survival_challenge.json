@@ -204,9 +204,7 @@
         ],
         "action": "Click",
         "next": [
-            "survival_challenge_sweep_confirm"
-        ],
-        "on_error": [
+            "survival_challenge_sweep_confirm",
             "survival_challenge_sweep_ready"
         ],
         "timeout": 800,

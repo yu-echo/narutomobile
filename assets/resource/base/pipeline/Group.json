@@ -2,9 +2,7 @@
     "group": {
         "next": [
             "group_entry",
-            "[JumpBack]open_ninjia_guide"
-        ],
-        "on_error": [
+            "[JumpBack]open_ninjia_guide",
             "[JumpBack]back_main_screen"
         ],
         "timeout": 2000,
@@ -50,9 +48,6 @@
             "group_gameplay_done",
             "no_group",
             "[JumpBack]ninjia_guide_to_funtion_retry"
-        ],
-        "on_error": [
-            "group"
         ],
         "timeout": 3000,
         "post_delay": 1500,

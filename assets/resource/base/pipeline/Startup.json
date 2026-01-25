@@ -16,9 +16,6 @@
             "[JumpBack]close_before_game_notice",
             "[JumpBack]close_teenager_page"
         ],
-        "on_error": [
-            "start_up"
-        ],
         "timeout": 30000
     },
     "restart_naruto": {
@@ -145,12 +142,10 @@
         ],
         "action": "Click",
         "next": [
-            "before_game_loading"
-        ],
-        "on_error": [
+            "before_game_loading",
             "back_main_screen_and_stop"
         ],
-        "timeout": 5000,
+        "timeout": 1000,
         "focus": "[color:DeepSkyBlue]点击开始游戏[/color]"
     },
     "before_game_loading": {

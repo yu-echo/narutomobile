@@ -2,9 +2,7 @@
     "mission_office": {
         "next": [
             "mission_office_in_ninjia_guide",
-            "[JumpBack]open_ninjia_guide"
-        ],
-        "on_error": [
+            "[JumpBack]open_ninjia_guide",
             "[JumpBack]back_main_screen"
         ],
         "timeout": 2000,
