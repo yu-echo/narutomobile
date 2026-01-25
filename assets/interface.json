@@ -156,6 +156,9 @@
         {
             "name": "火影情报社(beta)",
             "entry": "naruto_club",
+            "option": [
+                "喂豚豚"
+            ],
             "default_check": true,
             "description": "该任务并不稳定，如遇卡顿可能需要人工接管。"
         },
@@ -511,6 +514,27 @@
                             ]
                         }
                     }
+                }
+            ]
+        },
+        "喂豚豚": {
+            "type": "switch",
+            "description": "确认MFA不会在喂豚豚闪退后开启,闪退bug成因还在寻找",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "feed_pig": {
+                            "enabled": false
+                        },
+                        "without_feed_pig": {
+                            "enabled": false
+                        }
+                    }
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {}
                 }
             ]
         },
