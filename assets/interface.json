@@ -57,6 +57,9 @@
         {
             "name": "排行榜",
             "entry": "leaderboard",
+            "option": [
+                "排行榜低配优化"
+            ],
             "default_check": true,
             "description": "[size:15][color:tomato]该功能会关闭公告气泡且需要使用已适配主题,如果不清楚已适配主题,请使用木叶季节系列主题[/color][/size]"
         },
@@ -79,6 +82,9 @@
         {
             "name": "组织",
             "entry": "group",
+            "option": [
+                "组织低配优化"
+            ],
             "default_check": true,
             "description": "包含祈福签到和领奖，追击晓组织领奖。该功能需要使用已适配主题,如果不清楚已适配主题,请使用木叶季节系列主题或开启从奖励中心进入"
         },
@@ -95,7 +101,8 @@
             "name": "修行之路",
             "entry": "shugyou_no_michi",
             "option": [
-                "打新关卡"
+                "打新关卡",
+                "修行之路低配优化"
             ],
             "default_check": true
         },
@@ -350,6 +357,30 @@
                             "on_error": [
                                 "restart_naruto"
                             ]
+                        }
+                    }
+                }
+            ]
+        },
+        "排行榜低配优化": {
+            "type": "switch",
+            "description": "为低配置,延迟高电脑服务,如果经常出现任务不执行,可以开启这个选项;会增加日志图片记录和减慢运行速度",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "leaderboard": {
+                            "next": [
+                                "ninjia_guide_to_leaderboard",
+                                "[JumpBack]open_ninjia_guide"
+                            ],
+                            "on_error": "[JumpBack]back_main_screen",
+                            "timeout": 2000,
+                            "focus": "[color:Aquamarine]进入排行榜子任务(低配优化)[/color]"
                         }
                     }
                 }
@@ -1508,6 +1539,30 @@
                 }
             ]
         },
+        "组织低配优化": {
+            "type": "switch",
+            "description": "为低配置,延迟高电脑服务,如果经常出现任务不执行,可以开启这个选项;会增加日志图片记录和减慢运行速度;从奖励中心进入",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "group": {
+                            "next": [
+                                "group_in_center_enter",
+                                "[JumpBack]award_center_enter"
+                            ],
+                            "timeout": 2000,
+                            "on_error": "[JumpBack]back_main_screen",
+                            "focus": "[color:Aquamarine]进入组织子任务(低配优化)[/color]"
+                        }
+                    }
+                }
+            ]
+        },
         "打新关卡": {
             "type": "switch",
             "default_case": "No",
@@ -1520,6 +1575,30 @@
                     "pipeline_override": {
                         "train_road_entry": {
                             "next": "shugyou_no_michi_auto_push"
+                        }
+                    }
+                }
+            ]
+        },
+        "修行之路低配优化": {
+            "type": "switch",
+            "description": "为低配置,延迟高电脑服务,如果经常出现任务不执行,可以开启这个选项;会增加日志图片记录和减慢运行速度",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "shugyou_no_michi": {
+                            "next": [
+                                "go_into_shugyou_no_michi",
+                                "[JumpBack]open_ninjia_guide"
+                            ],
+                            "timeout": 2000,
+                            "on_error": "[JumpBack]back_main_screen",
+                            "focus": "[color:Aquamarine]进入修行之路子任务(低配优化)[/color]"
                         }
                     }
                 }
