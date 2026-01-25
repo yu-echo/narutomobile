@@ -870,8 +870,7 @@
         "on_error": [
             "unknow_error"
         ],
-        "post_wait_freezes": 1000,
-        "focus": "[color:DeepSkyBlue]滑动提交任务[/color]"
+        "post_wait_freezes": 1000
     },
     "check_club_all_submit": {
         "recognition": "TemplateMatch",
@@ -892,8 +891,7 @@
         "recognition": "TemplateMatch",
         "template": "Naruto_club/mission_submit.png",
         "action": "Click",
-        "post_wait_freezes": 500,
-        "focus": "[color:DeepSkyBlue]提交任务[/color]"
+        "post_wait_freezes": 500
     },
     "naruto_club_duplicate_claim": {
         "recognition": "OCR",
@@ -1027,8 +1025,7 @@
             "naruto_club_in_loop_wheel"
         ],
         "action": "Click",
-        "post_wait_freezes": 300,
-        "focus": "[color:DeepSkyBlue]收到第一个奖励领取通知[/color]"
+        "post_wait_freezes": 300
     },
     "naruto_club_in_loop_wheel": {
         "recognition": "TemplateMatch",
@@ -1096,8 +1093,7 @@
             52
         ],
         "action": "Click",
-        "post_wait_freezes": 300,
-        "focus": "[color:DeepSkyBlue]收到第二个奖励领取通知[/color]"
+        "post_wait_freezes": 300
     },
     "club_second_award_done": {
         "recognition": "TemplateMatch",
@@ -1184,8 +1180,7 @@
             "club_third_award_done",
             "roger_club_third_award"
         ],
-        "post_wait_freezes": 200,
-        "focus": "[color:DeepSkyBlue]收到第三个奖励领取通知[/color]"
+        "post_wait_freezes": 300
     },
     "club_third_award_done": {
         "recognition": "TemplateMatch",

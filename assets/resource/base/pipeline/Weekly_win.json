@@ -322,8 +322,7 @@
             210,
             200
         ],
-        "threshold": 0.9,
-        "focus": "[color:darkgray]准备进入战斗[/color]"
+        "threshold": 0.9
     },
     "battle_detail": {
         "recognition": "TemplateMatch",
@@ -334,8 +333,7 @@
             220,
             103
         ],
-        "threshold": 0.8,
-        "focus": "[color:DeepSkyBlue]战斗结束[/color]"
+        "threshold": 0.8
     },
     "go_to_war": {
         "recognition": "TemplateMatch",
