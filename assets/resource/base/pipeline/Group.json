@@ -736,9 +736,8 @@
             -114
         ],
         "next": [
-            "group_gameplay_undone",
-            "group_gameplay_done",
-            "no_group",
+            "above_kage_group_pray",
+            "copper_group_pray",
             "group_ac_entry_undone"
         ],
         "action": "Click",
