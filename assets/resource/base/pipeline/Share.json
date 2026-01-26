@@ -12,17 +12,13 @@
     },
     "share_in_center_enter": {
         "recognition": "TemplateMatch",
-        "template": [
-            "SharedNode/check_not_in_daily_award.png",
-            "SharedNode/check_in_daily_award.png"
-        ],
+        "template": "SharedNode/check_in_daily_award.png",
         "roi": [
             37,
             172,
             130,
             47
         ],
-        "action": "Click",
         "next": [
             "share_ac_entry_undone",
             "share_ac_done",
@@ -31,6 +27,24 @@
         "pre_delay": 0,
         "post_delay": 0,
         "focus": "[color:DeepSkyBlue]检测是否已在奖励中心[/color]"
+    },
+    "share_not_in_center_enter": {
+        "recognition": "TemplateMatch",
+        "template": "SharedNode/check_not_in_daily_award.png",
+        "roi": [
+            37,
+            172,
+            130,
+            47
+        ],
+        "action": "Click",
+        "next": [
+            "share_in_center_enter",
+            "share_not_in_center_enter"
+        ],
+        "pre_delay": 0,
+        "post_delay": 0,
+        "focus": "[color:DeepSkyBlue]奖励中心有奖励没领取[/color]"
     },
     "share_ac_entry": {
         "recognition": "TemplateMatch",
@@ -45,6 +59,7 @@
         "action": "Click",
         "next": [
             "share_in_center_enter",
+            "share_not_in_center_enter",
             "share_ac_entry"
         ],
         "pre_delay": 0,

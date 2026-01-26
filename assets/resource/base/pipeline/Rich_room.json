@@ -9,17 +9,13 @@
     },
     "rich_room_in_center_enter": {
         "recognition": "TemplateMatch",
-        "template": [
-            "SharedNode/check_not_in_daily_award.png",
-            "SharedNode/check_in_daily_award.png"
-        ],
+        "template": "SharedNode/check_in_daily_award.png",
         "roi": [
             37,
             172,
             130,
             47
         ],
-        "action": "Click",
         "next": [
             "rich_room_ac_entry_undone",
             "award_center_find_end",
@@ -28,6 +24,24 @@
         "pre_delay": 0,
         "post_delay": 0,
         "focus": "[color:DeepSkyBlue]检测是否已在奖励中心[/color]"
+    },
+    "rich_room_not_in_center_enter": {
+        "recognition": "TemplateMatch",
+        "template": "SharedNode/check_not_in_daily_award.png",
+        "roi": [
+            37,
+            172,
+            130,
+            47
+        ],
+        "action": "Click",
+        "next": [
+            "rich_room_in_center_enter",
+            "rich_room_not_in_center_enter"
+        ],
+        "pre_delay": 0,
+        "post_delay": 0,
+        "focus": "[color:DeepSkyBlue]奖励中心有奖励没领取[/color]"
     },
     "rich_room_ac_entry": {
         "recognition": "TemplateMatch",
@@ -42,6 +56,7 @@
         "action": "Click",
         "next": [
             "rich_room_in_center_enter",
+            "rich_room_not_in_center_enter",
             "rich_room_ac_entry"
         ],
         "pre_delay": 0,
