@@ -42,6 +42,7 @@
                 "设置启动超时时间",
                 "启动超时后行为"
             ],
+            "description": "软件会关闭公告气泡",
             "default_check": true
         },
         {
@@ -60,8 +61,7 @@
             "option": [
                 "排行榜低配优化"
             ],
-            "default_check": true,
-            "description": "[size:15][color:tomato]该功能会关闭公告气泡且需要使用已适配主题,如果不清楚已适配主题,请使用木叶季节系列主题[/color][/size]"
+            "default_check": true
         },
         {
             "name": "送体力",
@@ -86,7 +86,7 @@
                 "组织低配优化"
             ],
             "default_check": true,
-            "description": "包含祈福签到和领奖，追击晓组织领奖。该功能需要使用已适配主题,如果不清楚已适配主题,请使用木叶季节系列主题或开启从奖励中心进入"
+            "description": "包含祈福签到和领奖，追击晓组织领奖。"
         },
         {
             "name": "积分赛",
