@@ -137,6 +137,9 @@
         {
             "name": "任务集会所(beta)",
             "entry": "mission_office",
+            "option": [
+                "任务集会所低配优化"
+            ],
             "description": "目前仅能接三个任务,不会刷新。买了超影要拿满奖励请手动完成",
             "default_check": true
         },
@@ -161,20 +164,6 @@
             "default_check": true
         },
         {
-            "name": "火影情报社(beta)",
-            "entry": "naruto_club",
-            "option": [
-                "喂豚豚"
-            ],
-            "default_check": true,
-            "description": "该任务并不稳定，如遇卡顿可能需要人工接管。"
-        },
-        {
-            "name": "邮箱",
-            "entry": "mail",
-            "default_check": true
-        },
-        {
             "name": "周胜(连点器)",
             "entry": "weekly_win",
             "option": [
@@ -183,7 +172,23 @@
                 "领取周胜奖励",
                 "清周胜过期宝箱"
             ],
+            "default_check": true,
             "description": "请在主页开始任务"
+        },
+        {
+            "name": "火影情报社(beta)",
+            "entry": "naruto_club",
+            "option": [
+                "喂豚豚",
+                "金币助手"
+            ],
+            "default_check": true,
+            "description": "该任务并不稳定，如遇卡顿可能需要人工接管。"
+        },
+        {
+            "name": "邮箱",
+            "entry": "mail",
+            "default_check": true
         },
         {
             "name": "活跃宝箱",
@@ -206,6 +211,7 @@
                 "雷霆秘境",
                 "阴阳秘境"
             ],
+            "default_check": true,
             "description": "请在主页开始任务"
         },
         {
@@ -569,6 +575,28 @@
                 }
             ]
         },
+        "金币助手": {
+            "type": "switch",
+            "description": "确认MFA不会在喂豚豚闪退后开启,闪退bug成因还在寻找",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "check_club_mission_done": {
+                            "next": [
+                                "club_third_award_done",
+                                "benefit_station",
+                                "swipe_for_club_submit"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {}
+                }
+            ]
+        },
         "选择小游戏": {
             "type": "select",
             "cases": [
@@ -740,28 +768,6 @@
                             "next": [
                                 "weekly_win_check_daily_duel_mission_recover_award",
                                 "back_main_screen_and_stop"
-                            ]
-                        }
-                    }
-                }
-            ]
-        },
-        "周胜从奖励中心进入": {
-            "description": "用于适配部分主题,不能打排位,一天只能运行一次",
-            "type": "switch",
-            "cases": [
-                {
-                    "name": "No",
-                    "pipeline_override": {}
-                },
-                {
-                    "name": "Yes",
-                    "pipeline_override": {
-                        "weekly_win": {
-                            "next": [
-                                "go_to_war_again",
-                                "[JumpBack]award_center_enter",
-                                "[JumpBack]back_main_screen"
                             ]
                         }
                     }
@@ -1260,6 +1266,29 @@
                 }
             ]
         },
+        "任务集会所低配优化": {
+            "type": "switch",
+            "description": "为低配置,延迟高电脑服务,如果经常出现任务不执行,可以开启这个选项;会增加日志图片记录和减慢运行速度;从奖励中心进入",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "mission_office": {
+                            "next": [
+                                "mission_office_in_center_enter",
+                                "mission_office_ac_entry",
+                                "[JumpBack]back_main_screen"
+                            ],
+                            "focus": "[color:Aquamarine]进入任务集会所子任务(低配优化)[/color]"
+                        }
+                    }
+                }
+            ]
+        },
         "丰饶开大": {
             "type": "switch",
             "cases": [
@@ -1553,10 +1582,9 @@
                         "group": {
                             "next": [
                                 "group_in_center_enter",
-                                "[JumpBack]award_center_enter"
+                                "group_ac_entry",
+                                "[JumpBack]back_main_screen"
                             ],
-                            "timeout": 2000,
-                            "on_error": "[JumpBack]back_main_screen",
                             "focus": "[color:Aquamarine]进入组织子任务(低配优化)[/color]"
                         }
                     }
@@ -1582,7 +1610,7 @@
         },
         "修行之路低配优化": {
             "type": "switch",
-            "description": "为低配置,延迟高电脑服务,如果经常出现任务不执行,可以开启这个选项;会增加日志图片记录和减慢运行速度",
+            "description": "为低配置,延迟高电脑服务,如果经常出现任务不执行,可以开启这个选项;会增加日志图片记录和减慢运行速度;从奖励中心进入",
             "cases": [
                 {
                     "name": "No",
@@ -1593,11 +1621,10 @@
                     "pipeline_override": {
                         "shugyou_no_michi": {
                             "next": [
-                                "go_into_shugyou_no_michi",
-                                "[JumpBack]open_ninjia_guide"
+                                "train_road_in_center_enter",
+                                "train_road_ac_entry",
+                                "[JumpBack]back_main_screen"
                             ],
-                            "timeout": 2000,
-                            "on_error": "[JumpBack]back_main_screen",
                             "focus": "[color:Aquamarine]进入修行之路子任务(低配优化)[/color]"
                         }
                     }

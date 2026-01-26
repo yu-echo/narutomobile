@@ -169,6 +169,20 @@
     "timeout": 3000,
     "focus": "[color:DeepSkyBlue]进入奖励中心[/color]"
   },
+  "ac_done": {
+    "recognition": "TemplateMatch",
+    "template": "SharedNode/center_entry_end.png",
+    "roi": [
+      180,
+      384,
+      1100,
+      118
+    ],
+    "pre_delay": 0,
+    "post_delay": 0,
+    "next": "back_main_screen_and_stop",
+    "focus": "[color:DeepSkyBlue]该任务已完成[/color]"
+  },
   "swipe_for_award_center_find": {
     "action": "Swipe",
     "begin": [

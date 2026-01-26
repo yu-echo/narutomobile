@@ -2,7 +2,7 @@
     "get_copper": {
         "next": [
             "get_copper_in_center_enter",
-            "[JumpBack]award_center_enter",
+            "get_copper_ac_enter",
             "[JumpBack]back_main_screen"
         ],
         "focus": "[color:DeepSkyBlue]进入铜币招财子任务[/color]"
@@ -22,13 +22,31 @@
         "pre_delay": 0,
         "action": "Click",
         "post_delay": 0,
-        "post_wait_freezes": 200,
         "next": [
             "get_copper_ac_entry_undone",
             "get_copper_ac_done",
             "[JumpBack]swipe_for_award_center_find"
         ],
         "focus": "[color:DeepSkyBlue]检测是否已在奖励中心[/color]"
+    },
+    "get_copper_ac_enter": {
+        "recognition": "TemplateMatch",
+        "template": "SharedNode/award_center_entry.png",
+        "roi": [
+            1174,
+            302,
+            99,
+            105
+        ],
+        "method": 10001,
+        "action": "Click",
+        "next": [
+            "get_copper_in_center_enter",
+            "get_copper_ac_enter"
+        ],
+        "pre_delay": 0,
+        "post_delay": 0,
+        "focus": "[color:DeepSkyBlue]进入奖励中心[/color]"
     },
     "get_copper_ac_entry_undone": {
         "recognition": "TemplateMatch",
@@ -47,13 +65,13 @@
             -40,
             -114
         ],
+        "action": "Click",
         "next": [
             "check_copper_done",
             "[JumpBack]start_copper",
             "get_copper_ac_entry_undone"
         ],
         "pre_delay": 0,
-        "action": "Click",
         "post_delay": 0,
         "focus": "[color:DeepSkyBlue]铜币招财未完成[/color]"
     },

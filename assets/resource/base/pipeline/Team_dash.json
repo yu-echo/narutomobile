@@ -2,7 +2,7 @@
     "team_dash": {
         "next": [
             "team_dash_in_center_enter",
-            "[JumpBack]award_center_enter",
+            "team_dash_ac_enter",
             "[JumpBack]back_main_screen"
         ],
         "timeout": 2000,
@@ -30,8 +30,26 @@
         ],
         "pre_delay": 0,
         "post_delay": 0,
-        "post_wait_freezes": 200,
         "focus": "[color:DeepSkyBlue]检测是否已在奖励中心[/color]"
+    },
+    "team_dash_ac_enter": {
+        "recognition": "TemplateMatch",
+        "template": "SharedNode/award_center_entry.png",
+        "roi": [
+            1174,
+            302,
+            99,
+            105
+        ],
+        "method": 10001,
+        "action": "Click",
+        "next": [
+            "team_dash_in_center_enter",
+            "team_dash_ac_enter"
+        ],
+        "pre_delay": 0,
+        "post_delay": 0,
+        "focus": "[color:DeepSkyBlue]进入奖励中心[/color]"
     },
     "team_dash_ac_entry_undone": {
         "recognition": "TemplateMatch",
