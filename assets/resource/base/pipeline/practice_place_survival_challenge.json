@@ -297,6 +297,7 @@
         ],
         "pre_delay": 0,
         "post_delay": 0,
+        "post_wait_freezes": 200,
         "next": [
             "survival_challenge_ac_entry_undone",
             "survival_challenge_ac_done",
