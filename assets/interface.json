@@ -3,6 +3,7 @@
     "github": "https://github.com/duorua/narutomobile",
     "description": "本软件开源免费,受AGPL v3协议保护。",
     "license": "LICENSE",
+    "icon": "Assets/logo.ico",
     "mirrorchyan_rid": "MaaAutoNaruto",
     "mirrorchyan_multiplatform": true,
     "interface_version": 2,
@@ -37,10 +38,11 @@
             "name": "进入火影",
             "entry": "start_up",
             "option": [
-                "账号属性",
                 "设置启动超时时间",
-                "启动超时后行为"
+                "启动超时后行为",
+                "账号属性"
             ],
+            "description": "软件会关闭公告气泡",
             "default_check": true
         },
         {
@@ -56,8 +58,7 @@
         {
             "name": "排行榜",
             "entry": "leaderboard",
-            "default_check": true,
-            "description": "[size:15][color:tomato]该功能会关闭公告气泡且需要使用已适配主题,如果不清楚已适配主题,请使用木叶季节系列主题[/color][/size]"
+            "default_check": true
         },
         {
             "name": "送体力",
@@ -79,7 +80,10 @@
             "name": "组织",
             "entry": "group",
             "default_check": true,
-            "description": "包含祈福签到和领奖，追击晓组织领奖。该功能需要使用已适配主题,如果不清楚已适配主题,请使用木叶季节系列主题或开启从奖励中心进入"
+            "description": "包含祈福签到和领奖，追击晓组织领奖。",
+            "option": [
+                "从奖励中心进入"
+            ]
         },
         {
             "name": "积分赛",
@@ -93,10 +97,11 @@
         {
             "name": "修行之路",
             "entry": "shugyou_no_michi",
+            "default_check": true,
             "option": [
-                "打新关卡"
-            ],
-            "default_check": true
+                "打新关卡",
+                "从奖励中心进入"
+            ]
         },
         {
             "name": "生存挑战",
@@ -122,14 +127,14 @@
             "default_check": true
         },
         {
-            "name": "任务集会所(beta)",
-            "entry": "mission_office",
-            "description": "目前仅能接三个任务,不会刷新。买了超影要拿满奖励请手动完成",
+            "name": "刷体力(精英副本)",
+            "entry": "use_energy",
             "default_check": true
         },
         {
-            "name": "刷体力(精英副本)",
-            "entry": "use_energy",
+            "name": "任务集会所(beta)",
+            "entry": "mission_office",
+            "description": "目前仅能接三个任务,不会刷新。买了超影要拿满奖励请手动完成",
             "default_check": true
         },
         {
@@ -153,17 +158,6 @@
             "default_check": true
         },
         {
-            "name": "火影情报社(beta)",
-            "entry": "naruto_club",
-            "default_check": true,
-            "description": "该任务并不稳定，如遇卡顿可能需要人工接管。"
-        },
-        {
-            "name": "邮箱",
-            "entry": "mail",
-            "default_check": true
-        },
-        {
             "name": "周胜(连点器)",
             "entry": "weekly_win",
             "option": [
@@ -173,6 +167,21 @@
                 "清周胜过期宝箱"
             ],
             "description": "请在主页开始任务"
+        },
+        {
+            "name": "火影情报社(beta)",
+            "entry": "naruto_club",
+            "option": [
+                "喂豚豚",
+                "金币助手"
+            ],
+            "default_check": true,
+            "description": "该任务并不稳定，如遇卡顿可能需要人工接管。"
+        },
+        {
+            "name": "邮箱",
+            "entry": "mail",
+            "default_check": true
         },
         {
             "name": "活跃宝箱",
@@ -195,6 +204,7 @@
                 "雷霆秘境",
                 "阴阳秘境"
             ],
+            "default_check": true,
             "description": "请在主页开始任务"
         },
         {
@@ -257,7 +267,7 @@
                 "大蛇丸试炼",
                 "百忍是否使用连点器战斗"
             ],
-            "description": "百忍虽好,可是有开放时间限制的哦"
+            "description": "需要已经适配的主题或者在决斗场页面开启任务"
         },
         {
             "name": "小游戏",
@@ -298,8 +308,28 @@
             "type": "select",
             "cases": [
                 {
+                    "name": "20S",
+                    "pipeline_override": {
+                        "start_naruto": {
+                            "timeout": 20000
+                        }
+                    }
+                },
+                {
+                    "name": "10S",
+                    "pipeline_override": {
+                        "start_naruto": {
+                            "timeout": 10000
+                        }
+                    }
+                },
+                {
                     "name": "30S",
-                    "pipeline_override": {}
+                    "pipeline_override": {
+                        "start_naruto": {
+                            "timeout": 30000
+                        }
+                    }
                 },
                 {
                     "name": "45S",
@@ -317,6 +347,16 @@
             "cases": [
                 {
                     "name": "启动火影",
+                    "pipeline_override": {
+                        "start_naruto": {
+                            "on_error": [
+                                "start_up"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "什么都不做",
                     "pipeline_override": {}
                 },
                 {
@@ -337,18 +377,18 @@
                 {
                     "name": "No",
                     "pipeline_override": {
-                        "goto_duel_field": {
+                        "goto_duel_field_by_guide": {
                             "custom_action_param": {
                                 "entry_name": "忍术对战"
                             },
-                            "focus": "[color:DeepSkyBlue]进入段位赛[/color]"
+                            "focus": "[color:DeepSkyBlue]进入忍术对战[/color]"
                         }
                     }
                 },
                 {
                     "name": "Yes",
                     "pipeline_override": {
-                        "goto_duel_field": {
+                        "goto_duel_field_by_guide": {
                             "custom_action_param": {
                                 "entry_name": "段位赛"
                             },
@@ -490,6 +530,49 @@
                             ]
                         }
                     }
+                }
+            ]
+        },
+        "喂豚豚": {
+            "type": "switch",
+            "description": "确认MFA不会在喂豚豚闪退后开启,闪退bug成因还在寻找",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "feed_pig": {
+                            "enabled": false
+                        },
+                        "without_feed_pig": {
+                            "enabled": false
+                        }
+                    }
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {}
+                }
+            ]
+        },
+        "金币助手": {
+            "type": "switch",
+            "description": "确认MFA不会在喂豚豚闪退后开启,闪退bug成因还在寻找",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "check_club_mission_done": {
+                            "next": [
+                                "club_third_award_done",
+                                "benefit_station",
+                                "swipe_for_club_submit"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {}
                 }
             ]
         },
@@ -670,28 +753,6 @@
                 }
             ]
         },
-        "周胜从奖励中心进入": {
-            "description": "用于适配部分主题,不能打排位,一天只能运行一次",
-            "type": "switch",
-            "cases": [
-                {
-                    "name": "No",
-                    "pipeline_override": {}
-                },
-                {
-                    "name": "Yes",
-                    "pipeline_override": {
-                        "weekly_win": {
-                            "next": [
-                                "go_to_war_again",
-                                "[JumpBack]award_center_enter",
-                                "[JumpBack]back_main_screen"
-                            ]
-                        }
-                    }
-                }
-            ]
-        },
         "借组织助战": {
             "type": "switch",
             "cases": [
@@ -765,7 +826,7 @@
             ],
             "pipeline_override": {
                 "secret_realm_check_overflow": {
-                    "custom_action_param": {
+                    "custom_recognition_param": {
                         "max_hit": "{秘境胜利次数}"
                     }
                 }
@@ -778,7 +839,7 @@
                 {
                     "name": "No",
                     "pipeline_override": {
-                        "secret_realm_accessory_card": {
+                        "secret_realm_flip_has_accessory_card": {
                             "enabled": false
                         }
                     }
@@ -831,8 +892,8 @@
                         "secret_realm_win": {
                             "next": [
                                 "secret_realm_flip_without_card",
-                                "[JumpBack]secret_realm_flip_accessory_card",
-                                "secret_realm_flip_gear_card",
+                                "[JumpBack]secret_realm_flip_has_accessory_card",
+                                "secret_realm_gear_card",
                                 "secret_realm_celebreate",
                                 "[JumpBack]secret_realm_win"
                             ]
@@ -847,11 +908,7 @@
                 },
                 {
                     "name": "No",
-                    "pipeline_override": {
-                        "secret_realm_flip_gear_card": {
-                            "enabled": false
-                        }
-                    }
+                    "pipeline_override": {}
                 }
             ]
         },
@@ -1032,6 +1089,7 @@
         },
         "百忍": {
             "type": "switch",
+            "description": "百忍虽好,可是有开放时间限制的哦",
             "cases": [
                 {
                     "name": "Yes",
@@ -1450,7 +1508,7 @@
             ]
         },
         "分享后直接返回游戏": {
-            "description": "开启后不会关闭社交软件而是直接返回火影,这个选项也会影响忍法帖的分享",
+            "description": "开启后不会关闭社交软件而是直接返回火影",
             "type": "switch",
             "cases": [
                 {
@@ -1479,6 +1537,34 @@
                     "pipeline_override": {
                         "train_road_entry": {
                             "next": "shugyou_no_michi_auto_push"
+                        }
+                    }
+                }
+            ]
+        },
+        "从奖励中心进入": {
+            "type": "switch",
+            "default_case": "No",
+            "cases": [
+                {
+                    "name": "No"
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "group": {
+                            "next": [
+                                "group_in_center_enter",
+                                "[JumpBack]award_center_enter",
+                                "[JumpBack]back_main_screen_before_task"
+                            ]
+                        },
+                        "shugyou_no_michi": {
+                            "next": [
+                                "train_road_in_center_enter",
+                                "[JumpBack]award_center_enter",
+                                "[JumpBack]back_main_screen_before_task"
+                            ]
                         }
                     }
                 }

@@ -6,7 +6,7 @@
         ],
         "pre_delay": 0,
         "post_delay": 0,
-        "focus": "[color:DeepSkyBlue]进入使用体力子任务[/color]"
+        "focus": "[color:DeepSkyBlue]进入使用体力任务[/color]"
     },
     "use_energy_by_ninjia_piece": {
         "recognition": "TemplateMatch",
@@ -92,8 +92,7 @@
             "retry_failed"
         ],
         "max_hit": 5,
-        "post_wait_freezes": 500,
-        "focus": "[color:DeepSkyBlue]确定便捷扫荡[/color]"
+        "post_wait_freezes": 500
     },
     "use_energy_keep_sweep": {
         "recognition": "OCR",

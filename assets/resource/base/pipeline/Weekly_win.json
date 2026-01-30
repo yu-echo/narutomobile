@@ -1,13 +1,15 @@
 {
     "weekly_win": {
         "next": [
-            "goto_duel_field",
+            "goto_duel_field_by_guide",
             "[JumpBack]open_ninjia_guide",
             "[JumpBack]back_main_screen"
         ],
+        "pre_delay": 0,
+        "post_delay": 0,
         "focus": "[color:DeepSkyBlue]开始周胜任务[/color]"
     },
-    "goto_duel_field": {
+    "goto_duel_field_by_guide": {
         "recognition": "Custom",
         "custom_recognition": "IsInNinjiaGuide",
         "action": "Custom",
@@ -23,7 +25,7 @@
             "[JumpBack]weekly_win_weekly_award",
             "[JumpBack]weekly_win_confirm_weekly_award",
             "[JumpBack]go_to_war",
-            "goto_duel_field"
+            "goto_duel_field_by_guide"
         ]
     },
     "weekly_win_weekly_award": {
@@ -122,11 +124,11 @@
         ],
         "green_mask": true,
         "next": [
+            "[JumpBack]winner_decided",
             "[JumpBack]click_All_skill",
-            "battle_tips",
-            "[JumpBack]winner_decided"
+            "battle_tips"
         ],
-        "timeout": 3000,
+        "timeout": 5000,
         "pre_delay": 0,
         "post_delay": 0,
         "focus": "[color:DeepSkyBlue]开始战斗[/color]"
@@ -146,7 +148,11 @@
         "next": [
             "battle_end",
             "weekly_win_substitution"
-        ]
+        ],
+        "pre_delay": 0,
+        "post_delay": 0,
+        "$doc": "有一部分忍者会复活,这时候可能会直接进战斗,所以提前JumpBack",
+        "timeout": 10000
     },
     "battle_end": {
         "recognition": "OCR",
@@ -185,7 +191,7 @@
         "green_mask": true,
         "action": "Click",
         "threshold": 0.8,
-        "post_delay": 500,
+        "post_wait_freezes": 500,
         "next": [
             "weekly_win_success",
             "[JumpBack]weekly_win_rank_up",
@@ -200,6 +206,7 @@
         "post_delay": 0,
         "next": [
             "go_to_war_again",
+            "[JumpBack]weekly_win_rank_up",
             "weekly_win_stop"
         ]
     },
@@ -316,11 +323,7 @@
             210,
             200
         ],
-        "action": "Swipe",
-        "duration": 50,
-        "threshold": 0.9,
-        "post_delay": 3000,
-        "focus": "[color:darkgray]准备进入战斗[/color]"
+        "threshold": 0.9
     },
     "battle_detail": {
         "recognition": "TemplateMatch",
@@ -331,8 +334,7 @@
             220,
             103
         ],
-        "threshold": 0.8,
-        "focus": "[color:DeepSkyBlue]战斗结束[/color]"
+        "threshold": 0.8
     },
     "go_to_war": {
         "recognition": "TemplateMatch",
@@ -353,7 +355,6 @@
             "[JumpBack]battle_tips",
             "[JumpBack]battle_again",
             "[JumpBack]weekly_win_substitution",
-            "[JumpBack]battle_end",
             "[JumpBack]go_to_war"
         ],
         "post_delay": 1000,
@@ -438,8 +439,7 @@
             368,
             139,
             122
-        ],
-        "focus": "[color:darkgray]匹配中[/color]"
+        ]
     },
     "weekly_win_rank_ban": {
         "recognition": "TemplateMatch",
@@ -527,6 +527,8 @@
             407,
             202
         ],
+        "pre_delay": 0,
+        "post_delay": 0,
         "next": [
             "weekly_win_get_weekly_duel_mission_award_1",
             "weekly_win_get_weekly_duel_mission_award_1_done"
@@ -626,6 +628,8 @@
             790,
             353
         ],
+        "pre_delay": 0,
+        "post_delay": 0,
         "next": [
             "weekly_win_check_no_daily_duel_mission_award",
             "[JumpBack]weekly_win_get_duel_mission_award"
@@ -645,11 +649,31 @@
             0.9
         ],
         "inverse": true,
+        "pre_delay": 0,
+        "post_delay": 0,
         "next": [
-            "back_main_screen_and_stop"
+            "close_mission_and_back_main_screen"
         ],
         "post_wait_freezes": 400,
         "focus": "[color:DeepSkyBlue]确认无奖励看领取[/color]"
+    },
+    "close_mission_and_back_main_screen": {
+        "recognition": "OCR",
+        "expected": "任务",
+        "roi": [
+            403,
+            597,
+            203,
+            123
+        ],
+        "action": "Click",
+        "pre_delay": 0,
+        "post_delay": 0,
+        "post_wait_freezes": 200,
+        "next": [
+            "back_main_screen_and_stop",
+            "close_mission_and_back_main_screen"
+        ]
     },
     "weekly_win_get_duel_mission_award": {
         "recognition": "TemplateMatch",

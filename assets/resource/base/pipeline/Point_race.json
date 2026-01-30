@@ -3,9 +3,11 @@
         "next": [
             "go_into_point_race",
             "[JumpBack]open_ninjia_guide",
-            "[JumpBack]back_main_screen"
+            "[JumpBack]back_main_screen_before_task"
         ],
-        "focus": "[color:DeepSkyBlue]进入积分赛子任务[/color]"
+        "pre_delay": 0,
+        "post_delay": 0,
+        "focus": "[color:DeepSkyBlue]进入积分赛任务[/color]"
     },
     "go_into_point_race": {
         "recognition": {
@@ -118,8 +120,7 @@
             "point_race_loading"
         ],
         "pre_delay": 0,
-        "post_delay": 0,
-        "focus": "[color:darkgray]加载战斗[/color]"
+        "post_delay": 0
     },
     "point_race_unchallengeable": {
         "recognition": "OCR",
@@ -177,8 +178,7 @@
             "back_main_screen_and_stop"
         ],
         "pre_delay": 0,
-        "post_delay": 0,
-        "focus": "[color:DeepSkyBlue]积分赛战斗结束[/color]"
+        "post_delay": 0
     },
     "point_race_get_challenge_button": {
         "recognition": "OCR",

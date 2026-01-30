@@ -7,7 +7,7 @@
             "[JumpBack]advanture_entry",
             "[JumpBack]back_main_screen"
         ],
-        "focus": "[color:DeepSkyBlue]进入冒险副本子任务[/color]"
+        "focus": "[color:DeepSkyBlue]进入冒险副本任务[/color]"
     },
     "advanture_entry": {
         "recognition": "TemplateMatch",
@@ -293,7 +293,6 @@
             160,
             127
         ],
-        "focus": "正在战斗中",
         "next": [
             "check_not_in_auto_fight"
         ]

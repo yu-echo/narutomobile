@@ -184,7 +184,7 @@
         "action": "Click",
         "next": [
             "more_gameplay_trace_vanish_in_match",
-            "[JumpBack]more_gameplay_in_trace_vanish"
+            "more_gameplay_in_trace_vanish"
         ],
         "timeout": 60000
     },
@@ -214,7 +214,7 @@
         ],
         "next": [
             "more_gameplay_trace_vanish_confirm_fight",
-            "[JumpBack]more_gameplay_trace_vanish_in_match"
+            "more_gameplay_trace_vanish_in_match"
         ]
     },
     "more_gameplay_trace_vanish_confirm_fight": {
@@ -254,7 +254,7 @@
             "more_gameplay_match_win",
             "more_gameplay_trace_vanish_confirm_selcet_ninjia",
             "more_gameplay_trace_vanish_check_fight",
-            "[JumpBack]more_gameplay_trace_vanish_choose_ninja"
+            "more_gameplay_trace_vanish_choose_ninja"
         ],
         "timeout": 60000
     },
@@ -316,7 +316,7 @@
         "next": [
             "more_gameplay_trace_vanish_check_fight",
             "[JumpBack]more_gameplay_trace_vanish_choose_ninja",
-            "[JumpBack]more_gameplay_trace_vanish_confirm_selcet_ninjia"
+            "more_gameplay_trace_vanish_confirm_selcet_ninjia"
         ],
         "focus": "[color:DeepSkyBlue]绝迹战场确定选忍者[/color]"
     },
