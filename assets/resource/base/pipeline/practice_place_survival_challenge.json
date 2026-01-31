@@ -210,7 +210,10 @@
             "check_survival_challenge_done",
             "survival_challenge_ticket_used_up",
             "survival_challenge_sweep_ready",
-            "start_survival_challenge_sweep",
+            "start_survival_challenge_sweep"
+        ],
+        "timeout": 3000,
+        "on_error": [
             "retry_failed"
         ],
         "pre_delay": 0,
@@ -309,7 +312,6 @@
             "survival_challenge_sweep_ticket_used_up"
         ],
         "$doc": "这里设置了post_wait_freezes,所以timeout可以调的很短",
-        "timeout": 5000,
         "pre_delay": 0,
         "post_delay": 0,
         "post_wait_freezes": 200,
