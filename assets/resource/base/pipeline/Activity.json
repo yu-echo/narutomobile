@@ -157,14 +157,16 @@
         "next": "check_mouthly_signature_title"
     },
     "check_mouthly_signature_title": {
-        "$doc": "点一下也没啥坏处",
-        "action": "Click",
-        "target": [
-            525,
-            527,
-            101,
-            98
+        "recognition": "TemplateMatch",
+        "template": "Activity/title.png",
+        "roi": [
+            346,
+            360,
+            414,
+            340
         ],
+        "action": "Click",
+        "$doc": "点一下也没啥坏处",
         "pre_delay": 0,
         "post_delay": 0,
         "next": [
