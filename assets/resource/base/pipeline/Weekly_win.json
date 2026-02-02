@@ -197,18 +197,26 @@
         "next": [
             "weekly_win_success",
             "[JumpBack]weekly_win_rank_up",
+            "[JumpBack]loading_page",
             "win_counter"
         ],
         "focus": "[color:DeepSkyBlue]战斗胜利[/color]"
     },
     "win_counter": {
+        "recognition": "TemplateMatch",
+        "template": "Weekly_win/go_to_war.png",
+        "roi": [
+            1069,
+            506,
+            190,
+            190
+        ],
         "action": "Custom",
         "custom_action": "CounterIncrement",
         "pre_delay": 0,
         "post_delay": 0,
         "next": [
             "go_to_war_again",
-            "[JumpBack]weekly_win_rank_up",
             "weekly_win_stop"
         ]
     },
