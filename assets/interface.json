@@ -12,9 +12,7 @@
         "child_args": [
             "-u",
             "../agent/main.py"
-        ],
-        "identifier": "3be2c931-9c0d-4d69-9ebd-eed2263e06fd",
-        "debug_session": "Agent 调试"
+        ]
     },
     "controller": [
         {
@@ -454,7 +452,7 @@
                     "pipeline_override": {
                         "get_ninjia_book_award": {
                             "template": [
-                                "Ninjia_book/seal_roll_waiting.png",
+                                "Ninjia_book/box_waiting.png",
                                 "Ninjia_book/copper_60_waiting.png",
                                 "Ninjia_book/fame_waiting.png",
                                 "Ninjia_book/gold_waiting.png",
@@ -463,6 +461,8 @@
                                 "Ninjia_book/soul_waiting.png",
                                 "Ninjia_book/box_waiting.png",
                                 "Ninjia_book/wooden_spike_roll_waiting.png",
+                                "Ninjia_book/seal_roll_waiting.png",
+                                "Ninjia_book/defence_roll_waiting.png",
                                 "Ninjia_book/title_waiting.png",
                                 "Ninjia_book/exchange_token_waiting.png"
                             ]
@@ -471,22 +471,7 @@
                 },
                 {
                     "name": "No",
-                    "pipeline_override": {
-                        "get_ninjia_book_award": {
-                            "template": [
-                                "Ninjia_book/seal_roll_waiting.png",
-                                "Ninjia_book/copper_60_waiting.png",
-                                "Ninjia_book/fame_waiting.png",
-                                "Ninjia_book/gold_waiting.png",
-                                "Ninjia_book/star_waiting.png",
-                                "Ninjia_book/energe_waiting.png",
-                                "Ninjia_book/soul_waiting.png",
-                                "Ninjia_book/wooden_spike_roll_waiting.png",
-                                "Ninjia_book/title_waiting.png",
-                                "Ninjia_book/exchange_token_waiting.png"
-                            ]
-                        }
-                    }
+                    "pipeline_override": {}
                 }
             ]
         },
@@ -1494,11 +1479,13 @@
                     "pipeline_override": {
                         "advanture_win": {
                             "next": [
+                                "[JumpBack]loading_page",
                                 "advanture_new_level_undone",
                                 "naruto_journey_new_level_undone",
                                 "advanture_new_function_unlock",
                                 "advanture_daily_award_unlock",
                                 "advanture_rank_up",
+                                "advanture_in_level_roll",
                                 "advanture_win"
                             ]
                         }
