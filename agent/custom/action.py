@@ -1,5 +1,6 @@
 import json
 from time import sleep
+import random
 from typing import Optional, Tuple
 
 from maa.agent.agent_server import AgentServer, TaskDetail
@@ -12,6 +13,7 @@ from utils.counter import counter
 from .utils import (
     fast_ocr,
     fast_swipe,
+    nonlinear_swipe,
     click,
     save_screenshot,
     validate_config,
@@ -241,7 +243,7 @@ class GoIntoEntryByGuide(CustomAction):
             ):
                 break
 
-            fast_swipe(
+            nonlinear_swipe(
                 context,
                 start_x=end[0],
                 start_y=end[1],
@@ -264,7 +266,7 @@ class GoIntoEntryByGuide(CustomAction):
                 break
 
             logger.debug("未识别到功能入口，滑动页面")
-            fast_swipe(
+            nonlinear_swipe(
                 context,
                 start_x=start[0],
                 start_y=start[1],
