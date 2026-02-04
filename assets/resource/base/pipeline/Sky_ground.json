@@ -95,7 +95,6 @@
             913,
             224
         ],
-        "max_hit": 5,
         "action": "Click",
         "target_offset": [
             -10,
@@ -106,10 +105,19 @@
         "next": [
             "sky_ground_battlefield_selection",
             "[JumpBack]sky_ground_mode",
-            "back_main_screen_and_stop"
+            "group_mode_not_open"
         ],
         "post_wait_freezes": 400,
         "focus": "[color:DeepSkyBlue]进入天地模式[/color]"
+    },
+    "group_mode_not_open": {
+        "recognition": "OCR",
+        "expected": [
+            "未开启"
+        ],
+        "next": [
+            "back_main_screen_and_stop"
+        ]
     },
     "swipe_for_sky_ground_mode": {
         "recognition": "TemplateMatch",

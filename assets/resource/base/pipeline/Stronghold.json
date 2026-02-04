@@ -97,11 +97,10 @@
             40,
             -5
         ],
-        "max_hit": 5,
         "next": [
             "stronghold_in_map",
             "[JumpBack]stronghold_mode",
-            "back_main_screen_and_stop"
+            "group_mode_not_open"
         ],
         "post_wait_freezes": 400,
         "focus": "[color:DeepSkyBlue]进入要塞[/color]"
