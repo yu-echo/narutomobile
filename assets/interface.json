@@ -204,6 +204,7 @@
                 "秘境翻忍具牌",
                 "秘境忍具每次只翻一张",
                 "从奖励中心进入",
+                "有挑战卷的时候才挑战",
                 "烈炎秘境",
                 "罡体秘境",
                 "水牢秘境",
@@ -920,6 +921,28 @@
                 {
                     "name": "No",
                     "pipeline_override": {}
+                }
+            ]
+        },
+        "有挑战卷的时候才挑战": {
+            "description": "测试功能,在有挑战卷的时候才进行秘境挑战",
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {}
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "secret_realm_fight": {
+                            "action": "DoNothing",
+                            "next": [
+                                "secret_realm_check_ticket",
+                                "secret_realm_last_end"
+                            ]
+                        }
+                    }
                 }
             ]
         },

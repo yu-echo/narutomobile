@@ -912,3 +912,40 @@ class FindGearFlipTicket(CustomRecognition):
             f"[FindGearFlipTicket] 忍具翻牌卷数量{ticket_count}≤0,返回识别未通过"
         )
         return CustomRecognition.AnalyzeResult(box=None, detail={})
+
+
+@AgentServer.custom_recognition("SecretRealmTicket")
+class SecretRealmTicket(CustomRecognition):
+    """
+    秘境挑战卷识别:和上面的饰品翻牌差不多
+    """
+
+    # 秘境挑战卷ROI
+    Secret_Real_Roi = [496, 624, 39, 44]
+
+    def analyze(
+        self, context: Context, argv: CustomRecognition.AnalyzeArg
+    ) -> CustomRecognition.AnalyzeResult:
+        logger.info("===== 执行秘境挑战卷识别 SecretRealmTicket =====")
+
+        ticket_count = get_flip_ticket_count(
+            context=context,
+            image=argv.image,
+            roi=self.Secret_Real_Roi,
+            text_modifier=lambda x: x,
+        )
+
+        if ticket_count is None:
+            logger.warning("[SecretRealmTicket] 秘境挑战卷数量识别失败,返回未通过")
+            return CustomRecognition.AnalyzeResult(box=None, detail={})
+
+        if ticket_count > 0:
+            logger.info(
+                f"[SecretRealmTicket] 秘境挑战卷数量{ticket_count}>0,返回识别通过"
+            )
+            return CustomRecognition.AnalyzeResult(box=Rect(0, 0, 1, 1), detail={})
+
+        logger.info(
+            f"[SecretRealmTicket] 秘境挑战卷数量{ticket_count}≤0,返回识别未通过"
+        )
+        return CustomRecognition.AnalyzeResult(box=None, detail={})
