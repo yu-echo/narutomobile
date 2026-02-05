@@ -165,19 +165,20 @@
         "next": [
             "rich_room_confirm_above_kage_sweep",
             "rich_room_above_kage_sweep"
-        ]
+        ],
+        "post_wait_freezes": 400
     },
     "rich_room_confirm_above_kage_sweep": {
-        "recognition": "OCR",
-        "expected": [
-            "超影",
-            "免费"
-        ],
+        "recognition": "TemplateMatch",
+        "template": "Rich_room/above_kage_free.png",
         "roi": [
             380,
             362,
             528,
             219
+        ],
+        "threshold": [
+            0.8
         ],
         "action": "Click",
         "next": [
@@ -186,16 +187,16 @@
         ]
     },
     "rich_room_without_confirm_above_kage_sweep": {
-        "recognition": "OCR",
-        "expected": [
-            "超影",
-            "免费"
-        ],
+        "recognition": "TemplateMatch",
+        "template": "Rich_room/above_kage_free.png",
         "roi": [
             380,
             362,
             528,
             219
+        ],
+        "threshold": [
+            0.8
         ],
         "inverse": true,
         "next": [

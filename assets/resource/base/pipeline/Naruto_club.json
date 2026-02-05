@@ -59,11 +59,11 @@
             353
         ],
         "next": [
-            "confrim_naruto_club_too_many_people"
+            "confirm_naruto_club_too_many_people"
         ],
         "focus": "[color:DeepSkyBlue]情报社访问人数过多[/color]"
     },
-    "confrim_naruto_club_too_many_people": {
+    "confirm_naruto_club_too_many_people": {
         "recognition": "OCR",
         "expected": [
             "确定"

@@ -194,7 +194,7 @@
         ],
         "action": "Click",
         "next": [
-            "sky_ground_confrim_battlefield_selection",
+            "sky_ground_confirm_battlefield_selection",
             "sky_ground_confirm_set",
             "sky_ground_to_column",
             "[JumpBack]sky_battlefield"
@@ -213,14 +213,14 @@
         ],
         "action": "Click",
         "next": [
-            "sky_ground_confrim_battlefield_selection",
+            "sky_ground_confirm_battlefield_selection",
             "sky_ground_confirm_set",
             "[JumpBack]ground_battlefield"
         ],
         "post_wait_freezes": 400,
         "focus": "[color:DeepSkyBlue]选择地战场[/color]"
     },
-    "sky_ground_confrim_battlefield_selection": {
+    "sky_ground_confirm_battlefield_selection": {
         "recognition": "OCR",
         "expected": [
             "确认"
@@ -235,7 +235,7 @@
         "next": [
             "sky_ground_recommended_ninja",
             "sky_ground_select_nijia",
-            "[JumpBack]sky_ground_confrim_battlefield_selection"
+            "[JumpBack]sky_ground_confirm_battlefield_selection"
         ],
         "post_wait_freezes": 800,
         "focus": "[color:DeepSkyBlue]确认战场选择[/color]"
