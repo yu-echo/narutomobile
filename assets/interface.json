@@ -688,6 +688,7 @@
             "inputs": [
                 {
                     "name": "周胜胜利次数",
+                    "label": "周胜胜利次数",
                     "description": "打赢输入次数,最大999",
                     "pipeline_type": "int",
                     "default": "999",
@@ -723,7 +724,7 @@
             ]
         },
         "清周胜过期宝箱": {
-            "description": "清周胜过期宝箱要有时间卡,且可能有bug",
+            "description": "清周胜过期宝箱要有时间卡,会先打完周胜胜利次数再开始清理过期宝箱",
             "type": "switch",
             "cases": [
                 {
@@ -828,6 +829,7 @@
             "inputs": [
                 {
                     "name": "秘境胜利次数",
+                    "label": "秘境胜利次数",
                     "description": "打赢输入次数,最大999",
                     "pipeline_type": "int",
                     "default": "1",
@@ -1257,10 +1259,11 @@
         },
         "你的名字": {
             "type": "input",
+            "description": "为上面的选项提供ID,只需要子串,识别ID成功时,不会点空柱子避战",
             "inputs": [
                 {
                     "name": "你的名字",
-                    "description": "为上面的选项提供ID,只需要子串,识别ID成功时,不会点空柱子避战",
+                    "label": "输入游戏名",
                     "pipeline_type": "string",
                     "default": "MaaAutoNaruto"
                 }
@@ -1504,6 +1507,7 @@
             "inputs": [
                 {
                     "name": "二级密码",
+                    "label": "二级密码",
                     "pipeline_type": "string",
                     "default": "0",
                     "verify": "^(0|[1-9]\\d*)$"
