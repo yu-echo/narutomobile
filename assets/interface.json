@@ -1449,6 +1449,13 @@
                                 "rebel_ninja_single_mode_checked",
                                 "rebel_ninja_summon_member"
                             ]
+                        },
+                        "rebel_ninja_without_not_open": {
+                            "next": [
+                                "rebel_ninja_single_mode",
+                                "rebel_ninja_single_mode_checked",
+                                "rebel_ninja_summon_member"
+                            ]
                         }
                     }
                 }

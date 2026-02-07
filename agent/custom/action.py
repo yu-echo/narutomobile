@@ -211,12 +211,12 @@ class GoIntoEntryByGuide(CustomAction):
         if box is None:
             logger.debug("该账号不为回归账号")
             start = [70, 600]
-            end = [70, 200]
+            end = [70, 300]
             list_roi = (0, 66, 219, 627)  # 防止识别到背景的排行榜
         else:
             logger.debug("该账号为回归账号")
             start = [300, 600]
-            end = [300, 200]
+            end = [300, 300]
             box = fast_ocr(context, expected=["忍界指引"], roi=(6, 886, 249, 173))
             if box is None:
                 return CustomAction.RunResult(success=False)

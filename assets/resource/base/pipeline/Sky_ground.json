@@ -4,7 +4,7 @@
             "sky_ground_entry",
             "sky_ground_in_main",
             "[JumpBack]open_ninjia_guide",
-            "[JumpBack]back_main_screen"
+            "[JumpBack]back_main_screen_before_task"
         ],
         "timeout": 1500,
         "focus": "[color:DeepSkyBlue]进入天地任务[/color]"
