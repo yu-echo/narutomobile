@@ -64,10 +64,10 @@ if args.clean:
 
 # setup python environment
 def setup_python():
-    print(f"开始设置Python环境")
+    print("开始设置Python环境")
     TEMP_DIR.mkdir(exist_ok=True)
 
-    print(f"下载python并解压...")
+    print("下载python并解压...")
     cmd = [
         "python",
         "tools/setup_full_python.py",
