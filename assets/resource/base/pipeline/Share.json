@@ -247,12 +247,6 @@
     "share_close_weekly_ninjia_title_next_step": {
         "recognition": "TemplateMatch",
         "template": "Share/weekly_ninjia_title_next_step.png",
-        "roi": [
-            807,
-            949,
-            294,
-            104
-        ],
         "pre_delay": 0,
         "post_delay": 0,
         "post_wait_freezes": 200,
@@ -262,12 +256,6 @@
     "share_close_weekly_ninjia_title": {
         "recognition": "TemplateMatch",
         "template": "Share/weekly_ninjia_title.png",
-        "roi": [
-            0,
-            475,
-            622,
-            244
-        ],
         "pre_delay": 0,
         "post_delay": 0,
         "post_wait_freezes": 200,
