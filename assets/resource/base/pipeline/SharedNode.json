@@ -44,7 +44,10 @@
       "[JumpBack]click_next_step",
       "[JumpBack]naruto_club_x",
       "[JumpBack]christmas_stocking",
-      "[JumpBack]level_up",
+      "[JumpBack]level_up"
+    ],
+    "timeout": 5000,
+    "on_error": [
       "[JumpBack]shut_social_media",
       "retry_failed"
     ],
@@ -666,6 +669,7 @@
     ],
     "pre_delay": 0,
     "post_delay": 0,
+    "post_wait_freezes": 300,
     "focus": "[color:DeepSkyBlue]进入忍界指引[/color]"
   },
   "up_swipe_for_ninja_guide_find_funtion_entry_end": {
@@ -725,21 +729,20 @@
       180,
       78
     ],
-    "action": "Swipe",
-    "max_hit": 15,
-    "begin": [
-      100,
-      150,
-      1,
-      1
-    ],
-    "end": [
-      100,
-      450,
-      1,
-      1
-    ],
-    "duration": 100
+    "action": {
+      "type": "Custom",
+      "param": {
+        "custom_action": "NonlinearSwipe",
+        "custom_action_param": {
+          "start_x": 100,
+          "start_y": 150,
+          "end_x": 100,
+          "end_y": 450,
+          "after_swipe_delay": 100
+        }
+      }
+    },
+    "max_hit": 15
   },
   "down_swipe_for_ninja_guide_find_funtion_entry": {
     "recognition": "TemplateMatch",
@@ -750,21 +753,20 @@
       180,
       78
     ],
-    "action": "Swipe",
-    "max_hit": 15,
-    "begin": [
-      100,
-      450,
-      1,
-      1
-    ],
-    "end": [
-      100,
-      150,
-      1,
-      1
-    ],
-    "duration": 100
+    "action": {
+      "type": "Custom",
+      "param": {
+        "custom_action": "NonlinearSwipe",
+        "custom_action_param": {
+          "start_x": 100,
+          "start_y": 450,
+          "end_x": 100,
+          "end_y": 150,
+          "after_swipe_delay": 100
+        }
+      }
+    },
+    "max_hit": 15
   },
   "ninja_guide_find_funtion_entry": {
     "recognition": "OCR",
@@ -872,7 +874,8 @@
       "ninja_guide_returning_player_to_ninja_guide"
     ],
     "pre_delay": 0,
-    "post_delay": 0
+    "post_delay": 0,
+    "post_wait_freezes": 300
   },
   "ninja_guide_returning_player_in_ninja_guide": {
     "recognition": "TemplateMatch",
@@ -948,21 +951,20 @@
       222,
       69
     ],
-    "action": "Swipe",
-    "max_hit": 15,
-    "begin": [
-      300,
-      150,
-      1,
-      1
-    ],
-    "end": [
-      300,
-      400,
-      1,
-      1
-    ],
-    "duration": 100
+    "action": {
+      "type": "Custom",
+      "param": {
+        "custom_action": "NonlinearSwipe",
+        "custom_action_param": {
+          "start_x": 300,
+          "start_y": 300,
+          "end_x": 300,
+          "end_y": 600,
+          "after_swipe_delay": 100
+        }
+      }
+    },
+    "max_hit": 15
   },
   "down_swipe_for_ninja_guide_returning_player_find_funtion_entry": {
     "recognition": "TemplateMatch",
@@ -973,21 +975,19 @@
       222,
       69
     ],
-    "action": "Swipe",
-    "max_hit": 15,
-    "begin": [
-      300,
-      400,
-      1,
-      1
-    ],
-    "end": [
-      300,
-      150,
-      1,
-      1
-    ],
-    "duration": 100
+    "action": {
+      "type": "Custom",
+      "param": {
+        "custom_action": "NonlinearSwipe",
+        "custom_action_param": {
+          "start_x": 300,
+          "start_y": 600,
+          "end_x": 300,
+          "end_y": 300,
+          "after_swipe_delay": 100
+        }
+      }
+    }
   },
   "ninja_guide_returning_player_find_funtion_entry": {
     "recognition": "OCR",
@@ -1006,6 +1006,7 @@
       "ninja_guide_returning_player_find_funtion_entry"
     ],
     "pre_delay": 0,
+    "post_wait_freezes": 200,
     "post_delay": 0,
     "focus": "[color:DeepSkyBlue]找到功能入口[/color]"
   },

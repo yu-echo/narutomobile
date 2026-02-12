@@ -537,12 +537,20 @@
                             "expected": [
                                 "秘境",
                                 "探险"
+                            ],
+                            "replace": [
+                                "秘境",
+                                "秋境"
                             ]
                         },
                         "ninja_guide_in_funtion_entry": {
                             "expected": [
                                 "秘境",
                                 "探险"
+                            ],
+                            "replace": [
+                                "秘境",
+                                "秋境"
                             ]
                         },
                         "ninja_guide_to_funtion_entry": {
@@ -555,12 +563,20 @@
                             "expected": [
                                 "秘境",
                                 "探险"
+                            ],
+                            "replace": [
+                                "秘境",
+                                "秋境"
                             ]
                         },
                         "ninja_guide_returning_player_in_funtion_entry": {
                             "expected": [
                                 "秘境",
                                 "探险"
+                            ],
+                            "replace": [
+                                "秘境",
+                                "秋境"
                             ]
                         },
                         "ninja_guide_returning_player_to_funtion_entry": {
