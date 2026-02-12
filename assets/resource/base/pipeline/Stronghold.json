@@ -2,7 +2,7 @@
     "stronghold": {
         "next": [
             "stronghold_entry",
-            "[JumpBack]open_ninjia_guide",
+            "[JumpBack]open_ninja_guide",
             "stronghold_in_stronghold",
             "stronghold_in_map",
             "[JumpBack]back_main_screen_before_task"

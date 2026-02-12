@@ -152,7 +152,7 @@
         },
         {
             "name": "忍法帖",
-            "entry": "ninjia_book",
+            "entry": "ninja_book",
             "option": [
                 "领取体验卡宝箱",
                 "是否领取奖励",
@@ -419,24 +419,24 @@
                 {
                     "name": "Yes",
                     "pipeline_override": {
-                        "hundred_ninjia_selcet_ninjia": {
+                        "hundred_ninja_selcet_ninja": {
                             "next": [
-                                "hundred_ninjia_confirm_selcet_ninjia",
-                                "[JumpBack]hundred_ninjia_selcet_ninjia",
-                                "hundred_ninjia_fight"
+                                "hundred_ninja_confirm_selcet_ninja",
+                                "[JumpBack]hundred_ninja_selcet_ninja",
+                                "hundred_ninja_fight"
                             ]
                         },
-                        "hundred_ninjia_confirm_selcet_ninjia": {
+                        "hundred_ninja_confirm_selcet_ninja": {
                             "next": [
-                                "hundred_ninjia_fight",
-                                "[JumpBack]hundred_ninjia_selcet_ninjia"
+                                "hundred_ninja_fight",
+                                "[JumpBack]hundred_ninja_selcet_ninja"
                             ]
                         },
-                        "hundred_ninjia_check_no_fight": {
+                        "hundred_ninja_check_no_fight": {
                             "next": [
-                                "hundred_ninjia_confirm_game_over",
-                                "hundred_ninjia_windfall",
-                                "hundred_ninjia_fight",
+                                "hundred_ninja_confirm_game_over",
+                                "hundred_ninja_windfall",
+                                "hundred_ninja_fight",
                                 "[JumpBack]wait_5_second"
                             ]
                         }
@@ -445,7 +445,7 @@
                 {
                     "name": "No",
                     "pipeline_override": {
-                        "hundred_ninjia_check_fight": {
+                        "hundred_ninja_check_fight": {
                             "action": "DoNothing"
                         }
                     }
@@ -458,21 +458,21 @@
                 {
                     "name": "Yes",
                     "pipeline_override": {
-                        "get_ninjia_book_award": {
+                        "get_ninja_book_award": {
                             "template": [
-                                "Ninjia_book/box_waiting.png",
-                                "Ninjia_book/copper_60_waiting.png",
-                                "Ninjia_book/fame_waiting.png",
-                                "Ninjia_book/gold_waiting.png",
-                                "Ninjia_book/star_waiting.png",
-                                "Ninjia_book/energe_waiting.png",
-                                "Ninjia_book/soul_waiting.png",
-                                "Ninjia_book/box_waiting.png",
-                                "Ninjia_book/wooden_spike_roll_waiting.png",
-                                "Ninjia_book/seal_roll_waiting.png",
-                                "Ninjia_book/defence_roll_waiting.png",
-                                "Ninjia_book/title_waiting.png",
-                                "Ninjia_book/exchange_token_waiting.png"
+                                "Ninja_book/box_waiting.png",
+                                "Ninja_book/copper_60_waiting.png",
+                                "Ninja_book/fame_waiting.png",
+                                "Ninja_book/gold_waiting.png",
+                                "Ninja_book/star_waiting.png",
+                                "Ninja_book/energe_waiting.png",
+                                "Ninja_book/soul_waiting.png",
+                                "Ninja_book/box_waiting.png",
+                                "Ninja_book/wooden_spike_roll_waiting.png",
+                                "Ninja_book/seal_roll_waiting.png",
+                                "Ninja_book/defence_roll_waiting.png",
+                                "Ninja_book/title_waiting.png",
+                                "Ninja_book/exchange_token_waiting.png"
                             ]
                         }
                     }
@@ -490,10 +490,10 @@
                 {
                     "name": "是",
                     "pipeline_override": {
-                        "ninjia_book_award_undone": {
+                        "ninja_book_award_undone": {
                             "next": [
-                                "ninjia_book_award_selected",
-                                "[JumpBack]ninjia_book_award_undone",
+                                "ninja_book_award_selected",
+                                "[JumpBack]ninja_book_award_undone",
                                 "[JumpBack]back_main_screen_and_stop"
                             ]
                         }
@@ -502,12 +502,12 @@
                 {
                     "name": "否",
                     "pipeline_override": {
-                        "ninjia_book_award_undone": {
+                        "ninja_book_award_undone": {
                             "next": [
                                 "back_main_screen_and_stop"
                             ]
                         },
-                        "ninjia_book_award_selected": {
+                        "ninja_book_award_selected": {
                             "next": [
                                 "back_main_screen_and_stop"
                             ]
@@ -773,7 +773,7 @@
                     "pipeline_override": {
                         "team_dash_invite_page": {
                             "next": [
-                                "team_dash_invite_ninjia"
+                                "team_dash_invite_ninja"
                             ]
                         }
                     }
@@ -1131,7 +1131,7 @@
                 {
                     "name": "Yes",
                     "pipeline_override": {
-                        "more_gameplay_hundred_ninjia_gameplay": {
+                        "more_gameplay_hundred_ninja_gameplay": {
                             "enabled": true
                         }
                     }
@@ -1139,7 +1139,7 @@
                 {
                     "name": "No",
                     "pipeline_override": {
-                        "more_gameplay_hundred_ninjia_gameplay": {
+                        "more_gameplay_hundred_ninja_gameplay": {
                             "enabled": false
                         }
                     }
@@ -1593,6 +1593,9 @@
                     "pipeline_override": {
                         "share_back_to_natuto": {
                             "enabled": true
+                        },
+                        "ninja_book_share_back_to_natuto": {
+                            "enabled": true
                         }
                     }
                 }
@@ -1625,10 +1628,10 @@
                 {
                     "name": "Yes",
                     "pipeline_override": {
-                        "ninjia_book_undone": {
+                        "ninja_book_undone": {
                             "next": [
-                                "ninjia_book_mission_undone",
-                                "ninjia_book_mission_done"
+                                "ninja_book_mission_undone",
+                                "ninja_book_mission_done"
                             ]
                         }
                     }

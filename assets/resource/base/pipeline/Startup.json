@@ -52,13 +52,13 @@
     "before_game": {
         "recognition": "TemplateMatch",
         "template": "Startup/naruto_logo.png",
-        "threshold": 0.4,
         "roi": [
             6,
             0,
             348,
             218
         ],
+        "green_mask": true,
         "next": [
             "click_start_game",
             "[JumpBack]start_up_loading",

@@ -2,7 +2,7 @@
     "point_race": {
         "next": [
             "go_into_point_race",
-            "[JumpBack]open_ninjia_guide",
+            "[JumpBack]open_ninja_guide",
             "[JumpBack]back_main_screen_before_task"
         ],
         "pre_delay": 0,
@@ -13,7 +13,7 @@
         "recognition": {
             "type": "Custom",
             "param": {
-                "custom_recognition": "IsInNinjiaGuide"
+                "custom_recognition": "IsInNinjaGuide"
             }
         },
         "action": {
@@ -27,7 +27,7 @@
         },
         "next": [
             "point_race_challenge_enter",
-            "[JumpBack]ninjia_guide_to_funtion_retry"
+            "[JumpBack]ninja_guide_to_funtion_retry"
         ],
         "pre_delay": 0,
         "post_delay": 0,

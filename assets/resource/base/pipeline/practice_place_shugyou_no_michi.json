@@ -2,7 +2,7 @@
     "shugyou_no_michi": {
         "next": [
             "go_into_shugyou_no_michi_by_guide",
-            "[JumpBack]open_ninjia_guide",
+            "[JumpBack]open_ninja_guide",
             "[JumpBack]back_main_screen_before_task"
         ],
         "pre_delay": 0,
@@ -46,7 +46,7 @@
         },
         "next": [
             "train_road_entry",
-            "[JumpBack]ninjia_guide_to_funtion_retry"
+            "[JumpBack]ninja_guide_to_funtion_retry"
         ],
         "focus": "进入修行之路",
         "post_wait_freezes": 400

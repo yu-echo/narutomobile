@@ -387,7 +387,7 @@
     "wait_for_survival_challenge_sweep_complete": {
         "recognition": "TemplateMatch",
         "template": [
-            "Practice_place/survival_no_ninjia.png",
+            "Practice_place/survival_no_ninja.png",
             "Practice_place/final_reward.png"
         ],
         "next": [

@@ -241,14 +241,14 @@
         "pre_delay": 0,
         "post_delay": 0,
         "next": [
-            "team_dash_invite_ninjia",
+            "team_dash_invite_ninja",
             "[JumpBack]can_not_invite",
             "dash_or_exit",
             "retry_failed"
         ],
         "focus": "[color:DeepSkyBlue]进入助战邀请界面[/color]"
     },
-    "team_dash_invite_ninjia": {
+    "team_dash_invite_ninja": {
         "recognition": "TemplateMatch",
         "template": "Team_dash/team_dash_invite.png",
         "roi": [
