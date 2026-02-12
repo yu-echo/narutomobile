@@ -804,7 +804,8 @@
       "ninja_guide_to_funtion_entry_not_open"
     ],
     "pre_delay": 0,
-    "post_delay": 0
+    "post_delay": 0,
+    "focus": "[color:DeepSkyBlue]选中功能入口[/color]"
   },
   "ninja_guide_to_funtion_entry": {
     "recognition": "OCR",
@@ -820,8 +821,7 @@
     ],
     "action": "Click",
     "pre_delay": 0,
-    "post_delay": 200,
-    "focus": "[color:DeepSkyBlue]前往功能入口[/color]"
+    "post_delay": 300
   },
   "ninja_guide_to_funtion_entry_not_open": {
     "recognition": "OCR",
@@ -1026,7 +1026,8 @@
       "ninja_guide_returning_player_to_funtion_entry_not_open"
     ],
     "pre_delay": 0,
-    "post_delay": 0
+    "post_delay": 0,
+    "focus": "[color:DeepSkyBlue]选中功能入口[/color]"
   },
   "ninja_guide_returning_player_to_funtion_entry": {
     "recognition": "OCR",
@@ -1042,8 +1043,7 @@
     ],
     "action": "Click",
     "pre_delay": 0,
-    "post_delay": 200,
-    "focus": "[color:DeepSkyBlue]前往功能入口[/color]"
+    "post_delay": 300
   },
   "ninja_guide_returning_player_to_funtion_entry_not_open": {
     "recognition": "OCR",
