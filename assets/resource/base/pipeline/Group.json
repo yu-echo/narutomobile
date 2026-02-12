@@ -1,7 +1,8 @@
 {
     "group": {
         "next": [
-            "goto_group_by_guide",
+            "ninja_guide_returning_player",
+            "ninja_guide_in_ninja_guide",
             "[JumpBack]open_ninja_guide",
             "[JumpBack]back_main_screen_before_task"
         ],
