@@ -548,7 +548,7 @@
                         },
                         "ninja_guide_to_funtion_entry": {
                             "next": [
-                                "point_race_challenge_enter",
+                                "train_road_entry",
                                 "ninja_guide_to_funtion_entry"
                             ]
                         },
@@ -566,7 +566,7 @@
                         },
                         "ninja_guide_returning_player_to_funtion_entry": {
                             "next": [
-                                "point_race_challenge_enter",
+                                "train_road_entry",
                                 "ninja_guide_returning_player_to_funtion_entry"
                             ]
                         }

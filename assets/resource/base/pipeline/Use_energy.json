@@ -46,7 +46,8 @@
         ],
         "action": "Click",
         "next": [
-            "use_energy_ez_sweep_entry"
+            "use_energy_ez_sweep_entry",
+            "elite_entry"
         ],
         "pre_delay": 0,
         "post_delay": 0,
@@ -88,7 +89,9 @@
             "use_energy_not_enough_sign",
             "use_energy_keep_sweep",
             "use_energy_finish",
-            "[JumpBack]use_energy_ez_sweep",
+            "[JumpBack]use_energy_ez_sweep"
+        ],
+        "on_error": [
             "retry_failed"
         ],
         "max_hit": 5,
