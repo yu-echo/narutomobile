@@ -336,7 +336,12 @@
             210,
             200
         ],
-        "threshold": 0.9
+        "threshold": 0.9,
+        "next": [
+            "weekly_win_match_fighting",
+            "[JumpBack]battle_tips",
+            "battle_end"
+        ]
     },
     "battle_detail": {
         "recognition": "TemplateMatch",

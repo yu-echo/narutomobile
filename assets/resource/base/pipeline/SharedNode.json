@@ -196,7 +196,8 @@
     "post_wait_freezes": 300,
     "next": [
       "[JumpBack]goto_daily_award",
-      "already_in_daily_award"
+      "already_in_daily_award",
+      "[JumpBack]close_chat"
     ]
   },
   "goto_daily_award": {
